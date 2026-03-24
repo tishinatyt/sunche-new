@@ -36,6 +36,9 @@ const SYSTEM_PROMPT = `Ти — AI-помічник компанії SunChe (Ч�
 - Не вигадуй конкретні ціни
 - Якщо клієнт хоче заявку — скажи що кнопка "Залишити заявку" є нижче`;
 
+// Health check
+app.get('/', (req, res) => res.json({ status: 'ok', service: 'SunChe Chat API' }));
+
 // POST /api/chat — проксі до Claude API
 app.post('/api/chat', async (req, res) => {
   const { messages } = req.body;
