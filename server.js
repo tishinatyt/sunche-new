@@ -1,6 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const config = require('./config');
+
+// Support both env vars (Railway/prod) and local config.js (dev)
+let config = {};
+try { config = require('./config'); } catch(e) {}
+const CLAUDE_API_KEY    = process.env.CLAUDE_API_KEY    || config.CLAUDE_API_KEY;
+const TELEGRAM_BOT_TOKEN= process.env.TELEGRAM_BOT_TOKEN|| config.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID  = process.env.TELEGRAM_CHAT_ID  || config.TELEGRAM_CHAT_ID;
+const PORT              = process.env.PORT              || config.PORT || 3000;
 
 const app = express();
 app.use(cors());
@@ -41,7 +48,7 @@ app.post('/api/chat', async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': config.CLAUDE_API_KEY,
+        'x-api-key': CLAUDE_API_KEY,
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
@@ -80,12 +87,12 @@ app.post('/api/lead', async (req, res) => {
 
   try {
     const response = await fetch(
-      `https://api.telegram.org/bot${config.TELEGRAM_BOT_TOKEN}/sendMessage`,
+      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          chat_id: config.TELEGRAM_CHAT_ID,
+          chat_id: TELEGRAM_CHAT_ID,
           text,
           parse_mode: 'HTML',
         }),
@@ -105,5 +112,5 @@ app.post('/api/lead', async (req, res) => {
   }
 });
 
-const PORT = config.PORT || 3000;
+
 app.listen(PORT, () => console.log(`SunChe Chat Server: http://localhost:${PORT}`));
