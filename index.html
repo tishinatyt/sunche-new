@@ -996,5 +996,335 @@
   const sticky=document.getElementById('sticky');
   window.addEventListener('scroll',()=>sticky.classList.toggle('show',scrollY>500),{passive:true});
 </script>
+
+<!-- ===== AI CHAT WIDGET ===== -->
+<!-- Змініть CHAT_API_URL на адресу вашого сервера після деплою -->
+<style>
+#sc-widget{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:'Outfit',sans-serif;}
+
+#sc-btn{
+  width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#f97316,#fbbf24);
+  box-shadow:0 4px 20px rgba(249,115,22,.45);
+  font-size:26px;line-height:1;
+  transition:transform .2s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;
+}
+#sc-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(249,115,22,.6);}
+#sc-btn.open{transform:scale(0.9);}
+
+#sc-panel{
+  position:absolute;bottom:72px;right:0;
+  width:340px;max-height:520px;
+  background:#fff;border-radius:20px 20px 4px 20px;
+  box-shadow:0 8px 40px rgba(0,0,0,.18);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  transform:scale(0.85) translateY(20px);
+  transform-origin:bottom right;
+  opacity:0;pointer-events:none;
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;
+}
+#sc-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}
+
+/* Header */
+#sc-head{
+  background:linear-gradient(135deg,#0c4a6e,#0369a1);
+  padding:14px 16px;display:flex;align-items:center;gap:10px;
+  flex-shrink:0;
+}
+#sc-head-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,#f97316,#fbbf24);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+#sc-head-info{flex:1;}
+#sc-head-name{color:#fff;font-weight:700;font-size:14px;}
+#sc-head-status{color:#7dd3fc;font-size:11px;margin-top:1px;}
+#sc-head-close{
+  background:rgba(255,255,255,.15);border:none;cursor:pointer;
+  color:#fff;font-size:16px;width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;flex-shrink:0;
+}
+#sc-head-close:hover{background:rgba(255,255,255,.3);}
+
+/* Messages */
+#sc-msgs{
+  flex:1;overflow-y:auto;padding:16px;
+  display:flex;flex-direction:column;gap:10px;
+  min-height:0;
+}
+#sc-msgs::-webkit-scrollbar{width:4px;}
+#sc-msgs::-webkit-scrollbar-thumb{background:#e2e8f0;border-radius:2px;}
+
+.sc-msg{display:flex;gap:8px;align-items:flex-end;}
+.sc-msg.user{flex-direction:row-reverse;}
+.sc-msg-avatar{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#f97316,#fbbf24);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.sc-bubble{
+  max-width:220px;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;
+}
+.sc-msg.bot .sc-bubble{background:#f1f5f9;color:#0f172a;border-bottom-left-radius:4px;}
+.sc-msg.user .sc-bubble{background:linear-gradient(135deg,#f97316,#fbbf24);color:#fff;border-bottom-right-radius:4px;}
+
+.sc-typing{display:flex;gap:4px;align-items:center;padding:10px 14px;}
+.sc-dot{
+  width:7px;height:7px;border-radius:50%;background:#94a3b8;
+  animation:scBounce 1.2s infinite;
+}
+.sc-dot:nth-child(2){animation-delay:.2s;}
+.sc-dot:nth-child(3){animation-delay:.4s;}
+@keyframes scBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
+
+/* Lead form */
+#sc-lead{
+  padding:16px;background:#fffbf3;border-top:1px solid #fde68a;
+  display:none;flex-direction:column;gap:10px;flex-shrink:0;
+}
+#sc-lead.show{display:flex;}
+#sc-lead-title{font-size:13px;font-weight:700;color:#92400e;margin-bottom:2px;}
+#sc-lead input{
+  border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;
+  font-size:13px;font-family:inherit;outline:none;
+  transition:border-color .2s;
+}
+#sc-lead input:focus{border-color:#f97316;}
+#sc-lead-send{
+  background:linear-gradient(135deg,#f97316,#fbbf24);color:#fff;
+  border:none;border-radius:10px;padding:11px;
+  font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;
+  transition:opacity .2s;
+}
+#sc-lead-send:hover{opacity:.9;}
+#sc-lead-cancel{
+  background:none;border:none;color:#94a3b8;font-size:12px;cursor:pointer;
+  text-align:center;font-family:inherit;
+}
+
+/* Footer */
+#sc-foot{padding:12px;border-top:1px solid #f1f5f9;flex-shrink:0;}
+#sc-input-row{display:flex;gap:8px;margin-bottom:8px;}
+#sc-input{
+  flex:1;border:1.5px solid #e2e8f0;border-radius:10px;
+  padding:10px 12px;font-size:13px;font-family:inherit;outline:none;
+  transition:border-color .2s;
+}
+#sc-input:focus{border-color:#f97316;}
+#sc-send{
+  background:linear-gradient(135deg,#f97316,#fbbf24);color:#fff;
+  border:none;border-radius:10px;width:38px;height:38px;
+  font-size:18px;cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .2s;
+}
+#sc-send:hover{opacity:.9;}
+#sc-req-btn{
+  width:100%;background:none;border:1.5px dashed #fde68a;
+  border-radius:10px;padding:8px;color:#92400e;font-size:12px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:background .2s,border-color .2s;
+}
+#sc-req-btn:hover{background:#fffbf3;border-color:#f97316;}
+
+@media(max-width:400px){
+  #sc-panel{width:calc(100vw - 32px);right:0;}
+}
+</style>
+
+<div id="sc-widget">
+  <button id="sc-btn" title="Задати питання AI">☀️</button>
+
+  <div id="sc-panel">
+    <div id="sc-head">
+      <div id="sc-head-avatar">☀️</div>
+      <div id="sc-head-info">
+        <div id="sc-head-name">SunChe AI</div>
+        <div id="sc-head-status">● Відповідаю зараз</div>
+      </div>
+      <button id="sc-head-close">✕</button>
+    </div>
+
+    <div id="sc-msgs"></div>
+
+    <div id="sc-lead">
+      <div id="sc-lead-title">📋 Залишити заявку</div>
+      <input type="text" id="sc-lead-name" placeholder="Ваше ім'я" autocomplete="name" />
+      <input type="tel" id="sc-lead-phone" placeholder="+38 (0XX) XXX XX XX" autocomplete="tel" />
+      <button id="sc-lead-send">Відправити заявку →</button>
+      <button id="sc-lead-cancel">Скасувати</button>
+    </div>
+
+    <div id="sc-foot">
+      <div id="sc-input-row">
+        <input type="text" id="sc-input" placeholder="Запитайте про СЕС..." autocomplete="off" />
+        <button id="sc-send">↑</button>
+      </div>
+      <button id="sc-req-btn">📋 Залишити заявку на виїзд</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ⬇ Змініть на URL вашого сервера після деплою
+  const API = 'http://localhost:3000';
+
+  const btn    = document.getElementById('sc-btn');
+  const panel  = document.getElementById('sc-panel');
+  const msgs   = document.getElementById('sc-msgs');
+  const input  = document.getElementById('sc-input');
+  const sendBtn= document.getElementById('sc-send');
+  const closeBtn=document.getElementById('sc-head-close');
+  const lead   = document.getElementById('sc-lead');
+  const leadName =document.getElementById('sc-lead-name');
+  const leadPhone=document.getElementById('sc-lead-phone');
+  const leadSend =document.getElementById('sc-lead-send');
+  const leadCancel=document.getElementById('sc-lead-cancel');
+  const reqBtn =document.getElementById('sc-req-btn');
+
+  let history = [];
+  let open = false;
+  let busy = false;
+
+  // Toggle panel
+  function togglePanel(){
+    open = !open;
+    panel.classList.toggle('open', open);
+    btn.classList.toggle('open', open);
+    if(open && history.length === 0) greet();
+  }
+  btn.addEventListener('click', togglePanel);
+  closeBtn.addEventListener('click', togglePanel);
+
+  // Add message bubble
+  function addMsg(role, text){
+    const wrap = document.createElement('div');
+    wrap.className = 'sc-msg ' + role;
+    if(role === 'bot'){
+      wrap.innerHTML = `<div class="sc-msg-avatar">☀️</div><div class="sc-bubble">${escHtml(text)}</div>`;
+    } else {
+      wrap.innerHTML = `<div class="sc-bubble">${escHtml(text)}</div>`;
+    }
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+    return wrap;
+  }
+
+  function escHtml(t){
+    return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // Typing indicator
+  function addTyping(){
+    const wrap = document.createElement('div');
+    wrap.className = 'sc-msg bot';
+    wrap.id = 'sc-typing';
+    wrap.innerHTML = `<div class="sc-msg-avatar">☀️</div><div class="sc-bubble sc-typing"><div class="sc-dot"></div><div class="sc-dot"></div><div class="sc-dot"></div></div>`;
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function removeTyping(){
+    const t = document.getElementById('sc-typing');
+    if(t) t.remove();
+  }
+
+  // Initial greeting
+  function greet(){
+    addMsg('bot', 'Привіт! 👋 Я AI-помічник SunChe. Консультую з питань сонячних станцій та резервного живлення. Чим можу допомогти?');
+  }
+
+  // Send message to Claude
+  async function sendMessage(){
+    const text = input.value.trim();
+    if(!text || busy) return;
+    busy = true;
+    input.value = '';
+
+    addMsg('user', text);
+    history.push({ role: 'user', content: text });
+
+    addTyping();
+
+    try {
+      const res = await fetch(`${API}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+      const data = await res.json();
+      removeTyping();
+
+      if(data.message){
+        addMsg('bot', data.message);
+        history.push({ role: 'assistant', content: data.message });
+        // Trim history to last 10 exchanges
+        if(history.length > 20) history = history.slice(-20);
+      } else {
+        addMsg('bot', 'Вибачте, сталася помилка. Зв\'яжіться з нами в Telegram: @cryptomaus');
+      }
+    } catch(e){
+      removeTyping();
+      addMsg('bot', 'Сервер тимчасово недоступний. Зв\'яжіться з нами: @cryptomaus');
+    }
+
+    busy = false;
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', e => { if(e.key === 'Enter') sendMessage(); });
+
+  // Lead form
+  function openLead(){
+    lead.classList.add('show');
+    reqBtn.style.display = 'none';
+    leadName.focus();
+  }
+  function closeLead(){
+    lead.classList.remove('show');
+    reqBtn.style.display = '';
+    leadName.value = '';
+    leadPhone.value = '';
+  }
+
+  reqBtn.addEventListener('click', openLead);
+  leadCancel.addEventListener('click', closeLead);
+
+  leadSend.addEventListener('click', async () => {
+    const name = leadName.value.trim();
+    const phone = leadPhone.value.trim();
+    if(!name){ leadName.focus(); return; }
+    if(!phone){ leadPhone.focus(); return; }
+
+    leadSend.textContent = 'Відправляємо...';
+    leadSend.disabled = true;
+
+    try {
+      const res = await fetch(`${API}/api/lead`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone }),
+      });
+      const data = await res.json();
+
+      closeLead();
+      if(data.success){
+        addMsg('bot', `✅ Дякуємо, ${name}! Заявку отримано. Наш спеціаліст зателефонує вам найближчим часом.`);
+      } else {
+        addMsg('bot', 'Не вдалося відправити заявку. Напишіть нам напряму: @cryptomaus');
+      }
+    } catch(e){
+      closeLead();
+      addMsg('bot', 'Помилка з\'єднання. Напишіть нам напряму: @cryptomaus');
+    }
+
+    leadSend.textContent = 'Відправити заявку →';
+    leadSend.disabled = false;
+  });
+})();
+</script>
 </body>
 </html>
