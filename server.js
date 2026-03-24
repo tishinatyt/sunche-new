@@ -116,4 +116,4 @@ app.post('/api/lead', async (req, res) => {
 });
 
 
-app.listen(PORT, () => console.log(`SunChe Chat Server: http://localhost:${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`SunChe Chat Server running on 0.0.0.0:${PORT}`));
