@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SunChe — Сонячні станції та резервне живлення у Чернігові</title>
+  <meta name="description" content="Монтаж сонячних електростанцій та систем резервного живлення у Чернігові та області. Кредит 0% від ПриватБанку. Гарантія 5 років." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sun:     #f97316;
+      --sun2:    #fb923c;
+      --gold:    #fbbf24;
+      --gold2:   #fde68a;
+      --sky:     #0ea5e9;
+      --bg:      #fffbf3;
+      --bg2:     #fff8e8;
+      --bg3:     #fef3c7;
+      --white:   #ffffff;
+      --text:    #1c1408;
+      --muted:   #78716c;
+      --muted2:  #a8a29e;
+      --border:  #fde8c8;
+      --border2: #fed7aa;
+      --green:   #16a34a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.65; overflow-x: hidden; cursor: none;
+    }
+
+    /* ── GRAIN ── */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 998; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 160px; opacity: 0.016;
+    }
+
+    /* ── CURSOR ── */
+    #cursor {
+      position: fixed; z-index: 9999; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--sun); pointer-events: none;
+      transform: translate(-50%,-50%); transition: width .2s, height .2s, opacity .2s;
+    }
+    #cursor.hover { width: 38px; height: 38px; opacity: .18; }
+    #cursor-ring {
+      position: fixed; z-index: 9998; width: 30px; height: 30px; border-radius: 50%;
+      border: 1.5px solid rgba(249,115,22,.3); pointer-events: none;
+      transform: translate(-50%,-50%);
+    }
+
+    /* ── UTILS ── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 13px; border-radius: 100px;
+      background: var(--bg3); color: var(--sun);
+      border: 1px solid var(--border2);
+    }
+    .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sun); flex-shrink: 0; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 15px; padding: 14px 30px; border-radius: 100px;
+      text-decoration: none; border: none; cursor: none;
+      transition: transform .2s, box-shadow .22s;
+      position: relative; overflow: hidden;
+    }
+    .btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,.15); opacity: 0; transition: opacity .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:hover::after { opacity: 1; }
+    .btn-sun {
+      background: linear-gradient(135deg, var(--sun), var(--gold));
+      color: #fff; box-shadow: 0 6px 24px rgba(249,115,22,.32);
+    }
+    .btn-sun:hover { box-shadow: 0 10px 36px rgba(249,115,22,.45); }
+    .btn-outline {
+      background: transparent; color: var(--sun);
+      border: 2px solid var(--border2); box-shadow: none;
+    }
+    .btn-outline:hover { border-color: var(--sun); box-shadow: 0 6px 20px rgba(249,115,22,.15); }
+    .btn-white {
+      background: #fff; color: var(--sun);
+      box-shadow: 0 6px 24px rgba(0,0,0,.12);
+    }
+    .btn-white:hover { box-shadow: 0 10px 36px rgba(0,0,0,.18); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,251,243,.92); backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 16px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-sun {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--sun), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; box-shadow: 0 4px 12px rgba(249,115,22,.3);
+    }
+    .logo-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px; font-weight: 800; color: var(--text);
+    }
+    .logo-name span { color: var(--sun); }
+    .nav-links {
+      display: flex; gap: 28px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--sun); }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .nav-phone {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--text);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-phone:hover { color: var(--sun); }
+    @media(max-width:768px){ .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 80px 0 90px; position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #fffbf3 0%, #fff8e8 50%, #fef3c7 100%);
+    }
+
+    /* sun ray background */
+    .hero-rays {
+      position: absolute; top: -20%; right: -5%;
+      width: 700px; height: 700px; pointer-events: none;
+    }
+    .ray {
+      position: absolute; top: 50%; left: 50%;
+      width: 2px; height: 340px; transform-origin: top center;
+      background: linear-gradient(to bottom, rgba(251,191,36,.22), transparent);
+      border-radius: 1px;
+    }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 480px; gap: 60px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    @media(max-width:900px){ .hero-grid { grid-template-columns: 1fr; } }
+
+    .hero-eyebrow { margin-bottom: 22px; }
+    .hero-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(34px, 5vw, 58px); font-weight: 800;
+      line-height: 1.1; letter-spacing: -.5px; margin-bottom: 18px;
+    }
+    .hero-title .accent { color: var(--sun); }
+    .hero-sub {
+      font-size: 18px; color: var(--muted); max-width: 440px; line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+
+    /* brand logos */
+    .hero-brands { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .brands-label { font-size: 12px; color: var(--muted2); font-weight: 500; margin-right: 4px; }
+    .brand-chip {
+      display: inline-flex; align-items: center; padding: 6px 13px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 6px; font-size: 12px; font-weight: 700; color: var(--muted);
+      letter-spacing: .04em;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    }
+
+    /* hero visual */
+    .hero-visual { position: relative; }
+    @media(max-width:900px){ .hero-visual { display: none; } }
+
+    .sun-card {
+      background: var(--white); border-radius: 24px;
+      padding: 36px; box-shadow: 0 20px 60px rgba(249,115,22,.1), 0 4px 16px rgba(0,0,0,.06);
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .sun-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--sun), var(--gold));
+    }
+    .sun-card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--muted); text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: 20px;
+    }
+    .sun-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .sun-stat:last-of-type { border-bottom: none; }
+    .sun-stat-label { font-size: 14px; color: var(--muted); }
+    .sun-stat-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 26px; font-weight: 800; color: var(--sun);
+    }
+    .sun-stat-val.ok { color: var(--green); }
+
+    .float-badge {
+      position: absolute; bottom: -18px; right: 24px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .float-badge-icon { font-size: 22px; }
+    .float-badge-text { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .float-badge-sub { font-size: 11px; color: var(--muted2); }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 0; }
+    .sec-label { margin-bottom: 14px; }
+    .sec-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(26px, 4vw, 44px); font-weight: 800;
+      line-height: 1.15; letter-spacing: -.3px; margin-bottom: 14px;
+    }
+    .sec-title .accent { color: var(--sun); }
+    .sec-sub { font-size: 17px; color: var(--muted); max-width: 500px; line-height: 1.7; }
+    .sec-header { margin-bottom: 56px; }
+
+    /* ── BENEFITS ── */
+    #benefits { background: var(--white); }
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    @media(max-width:860px){ .benefits-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px){ .benefits-grid { grid-template-columns: 1fr; } }
+
+    .benefit-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 26px;
+      text-align: center; transition: transform .22s, box-shadow .22s, border-color .22s;
+      position: relative; overflow: hidden;
+    }
+    .benefit-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--sun), var(--gold));
+      transform: scaleX(0); transform-origin: left; transition: transform .35s;
+    }
+    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(249,115,22,.1); border-color: var(--border2); }
+    .benefit-card:hover::after { transform: scaleX(1); }
+    .benefit-icon {
+      width: 60px; height: 60px; border-radius: 16px; margin: 0 auto 18px;
+      background: linear-gradient(135deg, var(--bg3), var(--gold2));
+      display: flex; align-items: center; justify-content: center; font-size: 28px;
+    }
+    .benefit-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px; font-weight: 700; margin-bottom: 8px;
+    }
+    .benefit-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    @media(max-width:768px){ .services-grid { grid-template-columns: 1fr; } }
+
+    .service-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px 32px;
+      transition: transform .22s, box-shadow .22s;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(249,115,22,.1); }
+    .service-card.featured { border-color: var(--sun); box-shadow: 0 8px 32px rgba(249,115,22,.12); }
+    .service-card.featured::before {
+      content: '★ Популярне'; position: absolute; top: 18px; right: 18px;
+      background: var(--sun); color: #fff; font-size: 11px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+    }
+    .service-icon {
+      width: 64px; height: 64px; border-radius: 18px; margin-bottom: 22px;
+      background: linear-gradient(135deg, var(--bg3), var(--gold2));
+      display: flex; align-items: center; justify-content: center; font-size: 30px;
+    }
+    .service-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px; font-weight: 800; margin-bottom: 12px;
+    }
+    .service-text { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+    .service-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .service-list li {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: 14px; color: var(--muted); line-height: 1.5;
+    }
+    .service-list li::before { content: '☀'; font-size: 12px; color: var(--sun); flex-shrink: 0; margin-top: 1px; }
+
+    /* ── HOW WE WORK ── */
+    #how { background: var(--white); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+      position: relative;
+    }
+    @media(max-width:860px){ .steps-grid { grid-template-columns: 1fr; gap: 4px; } }
+
+    .steps-grid::before {
+      content: ''; position: absolute; top: 36px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--sun), var(--gold));
+      z-index: 0;
+    }
+    @media(max-width:860px){ .steps-grid::before { display: none; } }
+
+    .step {
+      text-align: center; padding: 0 12px;
+      position: relative; z-index: 1;
+    }
+    .step-num {
+      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--sun), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 800; color: #fff;
+      box-shadow: 0 8px 24px rgba(249,115,22,.3);
+    }
+    .step-icon { font-size: 24px; margin-bottom: 10px; }
+    .step-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 700; margin-bottom: 8px;
+    }
+    .step-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CALCULATOR CTA ── */
+    #calc {
+      background: linear-gradient(135deg, var(--sun) 0%, #ea580c 40%, var(--gold) 100%);
+      padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    #calc::before {
+      content: '☀'; position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      font-size: min(22vw, 220px); opacity: .08; pointer-events: none; line-height: 1;
+    }
+    .calc-inner { position: relative; z-index: 1; }
+    .calc-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 4.5vw, 52px); font-weight: 800; color: #fff;
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .calc-sub { font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: 36px; }
+    .calc-chips {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px;
+    }
+    .calc-chip {
+      background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.28);
+      border-radius: 100px; padding: 7px 16px;
+      font-size: 13px; color: rgba(255,255,255,.92); font-weight: 500;
+    }
+
+    /* ── CREDIT ── */
+    #credit { background: var(--bg); }
+    .credit-wrap {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 28px; padding: 52px; overflow: hidden; position: relative;
+    }
+    .credit-wrap::before {
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 6px;
+      background: linear-gradient(to bottom, var(--sky), #38bdf8);
+    }
+    .credit-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    }
+    @media(max-width:768px){ .credit-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+    .credit-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd;
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .credit-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(22px, 3.5vw, 36px); font-weight: 800; margin-bottom: 14px; line-height: 1.2;
+    }
+    .credit-title .sky { color: var(--sky); }
+    .credit-desc { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+    .credit-stats { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 8px; }
+    .credit-stat-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 30px; font-weight: 800; color: var(--sky); line-height: 1;
+    }
+    .credit-stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    .credit-right {}
+    .credit-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .credit-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+    }
+    .credit-item:first-child { border-top: 1px solid var(--border); }
+    .credit-item-label { font-size: 14px; color: var(--muted); }
+    .credit-item-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px; font-weight: 800; color: var(--text);
+    }
+    .credit-item-val.sky { color: var(--sky); }
+    .credit-note { font-size: 12px; color: var(--muted2); margin-top: 14px; line-height: 1.6; }
+
+    /* ── PARTNERS ── */
+    #partners {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 80px 0;
+    }
+    .partners-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    @media(max-width:768px){ .partners-inner { grid-template-columns: 1fr; gap: 36px; } }
+
+    .partners-left {}
+    .p-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(249,115,22,.15); border: 1px solid rgba(249,115,22,.3);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--sun); margin-bottom: 20px;
+    }
+    .partners-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(24px, 3.5vw, 38px); font-weight: 800; color: #fff;
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .partners-title .accent { color: var(--gold); }
+    .partners-desc { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.7; margin-bottom: 28px; }
+    .partners-perks { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+    .partners-perks li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: rgba(255,255,255,.8); line-height: 1.5;
+    }
+    .partners-perks li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    .partners-right {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px; padding: 36px;
+    }
+    .partners-form-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px;
+    }
+    .perk-row {
+      display: flex; align-items: center; gap: 14px; padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .perk-row:last-of-type { border-bottom: none; }
+    .perk-icon { font-size: 22px; flex-shrink: 0; }
+    .perk-text { font-size: 14px; color: rgba(255,255,255,.75); line-height: 1.4; }
+
+    /* ── CONTACTS ── */
+    #contacts { background: var(--bg2); padding: 80px 0; }
+    .contacts-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    @media(max-width:768px){ .contacts-grid { grid-template-columns: 1fr; } }
+
+    .contacts-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(26px, 3.5vw, 40px); font-weight: 800;
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .contacts-sub { font-size: 16px; color: var(--muted); margin-bottom: 32px; line-height: 1.65; }
+
+    .contact-cards { display: flex; flex-direction: column; gap: 12px; }
+    .contact-card {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 20px;
+      text-decoration: none; color: var(--text);
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .contact-card:hover { transform: translateX(4px); box-shadow: 0 6px 24px rgba(249,115,22,.1); border-color: var(--border2); }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .contact-icon.phone { background: linear-gradient(135deg,#dcfce7,#bbf7d0); }
+    .contact-icon.addr  { background: linear-gradient(135deg,var(--bg3),var(--gold2)); }
+    .contact-icon.fb    { background: linear-gradient(135deg,#dbeafe,#bfdbfe); }
+    .contact-icon.tg    { background: linear-gradient(135deg,#e0f2fe,#bae6fd); }
+    .contact-label { font-size: 12px; color: var(--muted2); font-weight: 500; margin-bottom: 2px; }
+    .contact-val { font-size: 15px; font-weight: 600; color: var(--text); }
+
+    .contacts-right {}
+    .cta-box {
+      background: linear-gradient(135deg, var(--sun), var(--gold));
+      border-radius: 24px; padding: 44px 36px; text-align: center;
+      box-shadow: 0 16px 48px rgba(249,115,22,.25);
+    }
+    .cta-box-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 10px;
+    }
+    .cta-box-sub { font-size: 15px; color: rgba(255,255,255,.8); margin-bottom: 28px; line-height: 1.65; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text); padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .footer-sun {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--sun), var(--gold));
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .footer-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px; font-weight: 800; color: #fff;
+    }
+    .footer-name span { color: var(--gold); }
+    .footer-meta { font-size: 13px; color: rgba(255,255,255,.35); }
+
+    /* ── STICKY ── */
+    #sticky {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      z-index: 200; opacity: 0;
+      transition: transform .38s cubic-bezier(.34,1.56,.64,1), opacity .3s;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 100px; padding: 10px 10px 10px 22px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 12px 48px rgba(249,115,22,.18);
+      white-space: nowrap;
+    }
+    #sticky.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .sticky-text { font-size: 14px; font-weight: 500; color: var(--muted); }
+    .sticky-text strong { color: var(--text); }
+    @media(max-width:520px){ .sticky-text { display: none; } }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .rd1 { transition-delay: .1s; }
+    .rd2 { transition-delay: .2s; }
+    .rd3 { transition-delay: .3s; }
+    .rd4 { transition-delay: .4s; }
+  </style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-sun">☀</div>
+        <span class="logo-name">Sun<span>Che</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Послуги</a></li>
+        <li><a href="#how">Як працюємо</a></li>
+        <li><a href="#credit">Кредит 0%</a></li>
+        <li><a href="#contacts">Контакти</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:+380932826155" class="nav-phone">+38 093 282 61 55</a>
+        <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" class="btn btn-sun" style="font-size:13px;padding:10px 20px;" target="_blank">Розрахувати →</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- sun rays -->
+  <div class="hero-rays" aria-hidden="true" id="rays"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow reveal">
+          <span class="tag">Чернігів та область</span>
+        </div>
+        <h1 class="hero-title reveal rd1">
+          Сонячні станції<br/>та резервне живлення<br/><span class="accent">під ключ</span>
+        </h1>
+        <p class="hero-sub reveal rd2">
+          Монтаж у Чернігові та області.<br/>
+          <strong>Кредит 0% від ПриватБанку</strong> — програма «Джерела енергії».
+        </p>
+        <div class="hero-btns reveal rd2">
+          <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun">☀ Розрахувати вартість</a>
+          <a href="tel:+380932826155" class="btn btn-outline">📞 Зателефонувати</a>
+        </div>
+        <div class="hero-brands reveal rd3">
+          <span class="brands-label">Обладнання:</span>
+          <span class="brand-chip">Jinko</span>
+          <span class="brand-chip">Canadian Solar</span>
+          <span class="brand-chip">LONGi</span>
+          <span class="brand-chip">JA Solar</span>
+          <span class="brand-chip">Trina</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal rd2">
+        <div class="sun-card">
+          <div class="sun-card-title">// Ваша станція онлайн</div>
+          <div class="sun-stat">
+            <span class="sun-stat-label">Потужність системи</span>
+            <span class="sun-stat-val">10 кВт</span>
+          </div>
+          <div class="sun-stat">
+            <span class="sun-stat-label">Вироблено сьогодні</span>
+            <span class="sun-stat-val">42.8 кВт·г</span>
+          </div>
+          <div class="sun-stat">
+            <span class="sun-stat-label">Заряд акумулятора</span>
+            <span class="sun-stat-val ok">87%</span>
+          </div>
+          <div class="sun-stat">
+            <span class="sun-stat-label">Економія за місяць</span>
+            <span class="sun-stat-val">4 200 ₴</span>
+          </div>
+        </div>
+        <div class="float-badge">
+          <div class="float-badge-icon">🏅</div>
+          <div>
+            <div class="float-badge-text">Гарантія 5 років</div>
+            <div class="float-badge-sub">На обладнання та монтаж</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🔧</div>
+        <div class="benefit-title">Монтаж під ключ</div>
+        <div class="benefit-text">Від проекту до запуску — все беремо на себе. Жодної біганини з документами.</div>
+      </div>
+      <div class="benefit-card reveal rd1">
+        <div class="benefit-icon">🏅</div>
+        <div class="benefit-title">Гарантія 5 років</div>
+        <div class="benefit-text">На обладнання та виконані роботи. Сервіс і моніторинг після здачі.</div>
+      </div>
+      <div class="benefit-card reveal rd2">
+        <div class="benefit-icon">💳</div>
+        <div class="benefit-title">Кредит 0% ПриватБанк</div>
+        <div class="benefit-text">Програма «Джерела енергії». До 480 000 грн, до 60 місяців, ставка 0%.</div>
+      </div>
+      <div class="benefit-card reveal rd3">
+        <div class="benefit-icon">🚗</div>
+        <div class="benefit-title">Безкоштовний виїзд</div>
+        <div class="benefit-text">Замірюємо дах, оцінюємо об'єкт і готуємо розрахунок — безплатно.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-label reveal"><span class="tag">Послуги</span></div>
+      <h2 class="sec-title reveal rd1">Що ми <span class="accent">робимо</span></h2>
+      <p class="sec-sub reveal rd1">Повний спектр послуг у сфері сонячної енергетики та автономного живлення.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card featured reveal">
+        <div class="service-icon">⚡</div>
+        <div class="service-title">Сонячні електростанції (СЕС)</div>
+        <div class="service-text">Проектування та монтаж сонячних станцій для приватних будинків та бізнесу. Підключення до мережі, «зелений» тариф.</div>
+        <ul class="service-list">
+          <li>Приватні будинки від 5 кВт</li>
+          <li>Комерційні об'єкти від 30 кВт</li>
+          <li>Підключення до мережі ДТЕК</li>
+          <li>Оформлення «зеленого» тарифу</li>
+        </ul>
+      </div>
+      <div class="service-card reveal rd1">
+        <div class="service-icon">🔋</div>
+        <div class="service-title">Резервне живлення</div>
+        <div class="service-text">Системи безперебійного живлення для критичних об'єктів. Інвертори, LiFePO4 акумулятори.</div>
+        <ul class="service-list">
+          <li>Інвертори Deye, Growatt, Victron</li>
+          <li>АКБ LiFePO4 100–600 Аг</li>
+          <li>Автоматичне перемикання</li>
+          <li>Робота без мережі 24/7</li>
+        </ul>
+      </div>
+      <div class="service-card reveal rd2">
+        <div class="service-icon">🛠</div>
+        <div class="service-title">Обслуговування</div>
+        <div class="service-text">Діагностика, ремонт та моніторинг станцій будь-яких виробників. Швидкий виїзд.</div>
+        <ul class="service-list">
+          <li>Діагностика і звіт про стан</li>
+          <li>Ремонт інверторів і АКБ</li>
+          <li>Онлайн-моніторинг станції</li>
+          <li>Сезонне обслуговування</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="how">
+  <div class="container">
+    <div class="sec-header" style="text-align:center;">
+      <div class="sec-label reveal" style="justify-content:center;display:flex;"><span class="tag">Процес роботи</span></div>
+      <h2 class="sec-title reveal rd1">Як ми <span class="accent">працюємо</span></h2>
+      <p class="sec-sub reveal rd1" style="margin:0 auto;">Від першого дзвінка до запуску станції — чіткий процес без сюрпризів.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-icon">📋</div>
+        <div class="step-title">Заявка</div>
+        <div class="step-text">Заповнюєте бриф або телефонуєте — описуєте об'єкт та побажання.</div>
+      </div>
+      <div class="step reveal rd1">
+        <div class="step-num">2</div>
+        <div class="step-icon">🚗</div>
+        <div class="step-title">Виїзд</div>
+        <div class="step-text">Безкоштовно замірюємо дах, оцінюємо об'єкт і визначаємо оптимальне рішення.</div>
+      </div>
+      <div class="step reveal rd2">
+        <div class="step-num">3</div>
+        <div class="step-icon">📐</div>
+        <div class="step-title">Проект</div>
+        <div class="step-text">Готуємо технічний проект, узгоджуємо з ДТЕК, підбираємо обладнання.</div>
+      </div>
+      <div class="step reveal rd3">
+        <div class="step-num">4</div>
+        <div class="step-icon">⚙️</div>
+        <div class="step-title">Монтаж</div>
+        <div class="step-text">Команда сертифікованих монтажників виконує роботи за 1–3 дні.</div>
+      </div>
+      <div class="step reveal rd4">
+        <div class="step-num">5</div>
+        <div class="step-icon">✅</div>
+        <div class="step-title">Запуск</div>
+        <div class="step-text">Запускаємо, налаштовуємо моніторинг, інструктуємо власника. Станція працює!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR CTA -->
+<section id="calc">
+  <div class="container">
+    <div class="calc-inner">
+      <h2 class="calc-title reveal">Скільки коштує ваша<br/>сонячна станція?</h2>
+      <p class="calc-sub reveal rd1">Розрахуйте вартість за 5 хвилин — заповніть бриф онлайн</p>
+      <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-white reveal rd1" style="font-size:17px;padding:18px 44px;">
+        ☀ Розрахувати вартість СЕС
+      </a>
+      <div class="calc-chips reveal rd2">
+        <span class="calc-chip">Безкоштовно</span>
+        <span class="calc-chip">Без обов'язків</span>
+        <span class="calc-chip">Відповідь протягом дня</span>
+        <span class="calc-chip">Виїзд безкоштовно</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIT -->
+<section id="credit">
+  <div class="container">
+    <div class="credit-wrap">
+      <div class="credit-grid">
+        <div class="credit-left">
+          <div class="credit-badge reveal">💳 ПриватБанк</div>
+          <h2 class="credit-title reveal rd1">Програма<br/>«Джерела енергії»<br/><span class="sky">Кредит 0%</span></h2>
+          <p class="credit-desc reveal rd1">Встановіть сонячну станцію зараз — платіть частинами без переплати. Спеціальна програма ПриватБанку для відновлюваної енергетики.</p>
+          <div class="credit-stats reveal rd2">
+            <div>
+              <div class="credit-stat-val">0%</div>
+              <div class="credit-stat-label">Ставка кредиту</div>
+            </div>
+            <div>
+              <div class="credit-stat-val">60</div>
+              <div class="credit-stat-label">Місяців терміну</div>
+            </div>
+            <div>
+              <div class="credit-stat-val">480К</div>
+              <div class="credit-stat-label">Грн максимум</div>
+            </div>
+          </div>
+          <div style="margin-top:28px;" class="reveal rd2">
+            <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun">Розрахувати кредит →</a>
+          </div>
+        </div>
+        <div class="credit-right reveal rd1">
+          <ul class="credit-list">
+            <li class="credit-item">
+              <span class="credit-item-label">Сума кредиту</span>
+              <span class="credit-item-val">100 000 — 480 000 ₴</span>
+            </li>
+            <li class="credit-item">
+              <span class="credit-item-label">Процентна ставка</span>
+              <span class="credit-item-val sky">0%</span>
+            </li>
+            <li class="credit-item">
+              <span class="credit-item-label">Термін</span>
+              <span class="credit-item-val">до 60 місяців</span>
+            </li>
+            <li class="credit-item">
+              <span class="credit-item-label">Переплата</span>
+              <span class="credit-item-val sky">0 грн</span>
+            </li>
+            <li class="credit-item">
+              <span class="credit-item-label">Перший внесок</span>
+              <span class="credit-item-val">від 20%</span>
+            </li>
+          </ul>
+          <div class="credit-note">* Кредит надається АТ КБ «ПриватБанк». Умови можуть змінюватись. Уточнюйте у менеджера.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="container">
+    <div class="partners-inner">
+      <div class="partners-left">
+        <div class="p-badge reveal">🤝 Для монтажників</div>
+        <h2 class="partners-title reveal rd1">Стань партнером <span class="accent">SunChe</span></h2>
+        <p class="partners-desc reveal rd1">Ви монтажник або електрик? Ми шукаємо партнерів у Чернігівській та сусідніх областях. Беремо на себе продажі та документи — ви монтуєте.</p>
+        <ul class="partners-perks reveal rd2">
+          <li>Стабільний потік замовлень від нас</li>
+          <li>Технічна підтримка та навчання</li>
+          <li>Ми беремо на себе весь продаж і документи</li>
+          <li>Оплата за кожен виконаний об'єкт</li>
+          <li>Офіційне партнерство, без тіні</li>
+        </ul>
+        <div class="reveal rd2">
+          <a href="https://tishinatyt.github.io/ses-platform/installer-brief.html" target="_blank" class="btn btn-sun">Заповнити анкету →</a>
+        </div>
+      </div>
+      <div class="partners-right reveal rd1">
+        <div class="partners-form-title">Що ви отримуєте</div>
+        <div class="perk-row">
+          <div class="perk-icon">📦</div>
+          <div class="perk-text">Готові замовлення — ми приводимо клієнта, ви монтуєте</div>
+        </div>
+        <div class="perk-row">
+          <div class="perk-icon">🧾</div>
+          <div class="perk-text">Всі документи, проект та узгодження — наша справа</div>
+        </div>
+        <div class="perk-row">
+          <div class="perk-icon">🎓</div>
+          <div class="perk-text">Безкоштовне навчання та технічна підтримка</div>
+        </div>
+        <div class="perk-row">
+          <div class="perk-icon">💰</div>
+          <div class="perk-text">Гідна оплата за кожен завершений об'єкт</div>
+        </div>
+        <div style="margin-top:24px;">
+          <a href="https://tishinatyt.github.io/ses-platform/installer-brief.html" target="_blank" class="btn btn-sun" style="width:100%;justify-content:center;">Стати партнером →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section id="contacts">
+  <div class="container">
+    <div class="contacts-grid">
+      <div>
+        <h2 class="contacts-title reveal">Зв'яжіться<br/>з нами</h2>
+        <p class="contacts-sub reveal rd1">Безкоштовна консультація та виїзд на об'єкт. Відповідаємо швидко.</p>
+        <div class="contact-cards">
+          <a href="tel:+380932826155" class="contact-card reveal rd1">
+            <div class="contact-icon phone">📞</div>
+            <div>
+              <div class="contact-label">Телефон</div>
+              <div class="contact-val">+38 093 282 61 55</div>
+            </div>
+          </a>
+          <div class="contact-card reveal rd2" style="cursor:default;">
+            <div class="contact-icon addr">📍</div>
+            <div>
+              <div class="contact-label">Адреса</div>
+              <div class="contact-val">Чернігів, вул. Ремісника 45</div>
+            </div>
+          </div>
+          <a href="https://facebook.com/SunChernigiv" target="_blank" class="contact-card reveal rd2">
+            <div class="contact-icon fb">👍</div>
+            <div>
+              <div class="contact-label">Facebook</div>
+              <div class="contact-val">SunChernigiv</div>
+            </div>
+          </a>
+          <a href="https://t.me/cryptomaus" target="_blank" class="contact-card reveal rd3">
+            <div class="contact-icon tg">✈️</div>
+            <div>
+              <div class="contact-label">Telegram</div>
+              <div class="contact-val">@cryptomaus</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contacts-right reveal rd1">
+        <div class="cta-box">
+          <div class="cta-box-title">Безкоштовний виїзд</div>
+          <div class="cta-box-sub">Замовте виїзд фахівця — оцінимо ваш дах, порахуємо ефективність та вартість станції безкоштовно.</div>
+          <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-white" style="font-size:16px;padding:16px 36px;width:100%;justify-content:center;margin-bottom:12px;">
+            ☀ Розрахувати вартість
+          </a>
+          <a href="tel:+380932826155" class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.35);font-size:15px;padding:14px 36px;width:100%;justify-content:center;">
+            📞 +38 093 282 61 55
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="footer-logo">
+        <div class="footer-sun">☀</div>
+        <span class="footer-name">Sun<span>Che</span></span>
+      </a>
+      <div class="footer-meta">© 2026 SunChe · Чернігів · Сонячні станції та резервне живлення</div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY -->
+<div id="sticky">
+  <span class="sticky-text">Розрахунок <strong>безкоштовно</strong></span>
+  <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun" style="font-size:13px;padding:10px 20px;border-radius:100px;">☀ Розрахувати →</a>
+</div>
+
+<script>
+  /* CURSOR */
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+  });
+  (function tick(){
+    rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(tick);
+  })();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hover'));
+  });
+
+  /* SUN RAYS */
+  const raysEl = document.getElementById('rays');
+  if(raysEl){
+    for(let i=0;i<18;i++){
+      const r=document.createElement('div');
+      r.className='ray';
+      r.style.transform=`rotate(${i*20}deg)`;
+      r.style.opacity=(0.3+Math.random()*0.5).toFixed(2);
+      raysEl.appendChild(r);
+    }
+  }
+
+  /* REVEAL */
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  /* STICKY */
+  const sticky=document.getElementById('sticky');
+  window.addEventListener('scroll',()=>sticky.classList.toggle('show',scrollY>500),{passive:true});
+</script>
+</body>
+</html>
