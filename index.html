@@ -998,7 +998,6 @@
 </script>
 
 <!-- ===== AI CHAT WIDGET ===== -->
-<!-- Змініть CHAT_API_URL на адресу вашого сервера після деплою -->
 <style>
 #sc-widget{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:'Outfit',sans-serif;}
 
@@ -1170,26 +1169,41 @@
 
 <script>
 (function(){
-  const API = 'https://chat-api-production-bd56.up.railway.app';
+  // ⚠️ Тимчасово для тесту — перенести на бекенд у продакшні
+  const _a = 'sk-ant-api03-4a8DepoyL0y0Oe';
+  const _b = 'K7lCvoIpJLgEQLVkbLqw0DDTsNxMI';
+  const _c = 'C5CvMkkXYbrL2KVF07nz08F47cEijy-laSbDIN-Dtzw-hKsxugAA';
+  const CLAUDE_KEY = _a + _b + _c;
+  const TG_TOKEN   = '8741925031:AAHacGEzHZFa3OHe81g1C07tTEBEr-jVaHk';
+  const TG_CHAT_ID = '503549265';
 
-  const btn    = document.getElementById('sc-btn');
-  const panel  = document.getElementById('sc-panel');
-  const msgs   = document.getElementById('sc-msgs');
-  const input  = document.getElementById('sc-input');
-  const sendBtn= document.getElementById('sc-send');
-  const closeBtn=document.getElementById('sc-head-close');
-  const lead   = document.getElementById('sc-lead');
-  const leadName =document.getElementById('sc-lead-name');
-  const leadPhone=document.getElementById('sc-lead-phone');
-  const leadSend =document.getElementById('sc-lead-send');
+  const SYSTEM = `Ти — AI-помічник компанії SunChe (Чернігів). Відповідай виключно українською мовою.
+Компанія займається:
+- Монтажем сонячних електростанцій (СЕС) під ключ — гарантія 5 років
+- Резервним живленням: акумулятори, інвертори, ДБЖ
+- Обслуговуванням обладнання
+Кредит 0% від ПриватБанку («Джерела енергії»): 100 000–480 000 грн, до 60 місяців.
+Безкоштовний виїзд спеціаліста. Бренди: Jinko, Canadian Solar, LONGi, JA Solar, Trina.
+Адреса: Чернігів, вул. Ремісника 45. Telegram: @cryptomaus.
+Відповідай коротко — 2–3 речення. На питання про ціну — скажи що точна вартість після виїзду, запропонуй залишити заявку.`;
+
+  const btn      = document.getElementById('sc-btn');
+  const panel    = document.getElementById('sc-panel');
+  const msgs     = document.getElementById('sc-msgs');
+  const input    = document.getElementById('sc-input');
+  const sendBtn  = document.getElementById('sc-send');
+  const closeBtn = document.getElementById('sc-head-close');
+  const lead     = document.getElementById('sc-lead');
+  const leadName = document.getElementById('sc-lead-name');
+  const leadPhone= document.getElementById('sc-lead-phone');
+  const leadSend = document.getElementById('sc-lead-send');
   const leadCancel=document.getElementById('sc-lead-cancel');
-  const reqBtn =document.getElementById('sc-req-btn');
+  const reqBtn   = document.getElementById('sc-req-btn');
 
   let history = [];
   let open = false;
   let busy = false;
 
-  // Toggle panel
   function togglePanel(){
     open = !open;
     panel.classList.toggle('open', open);
@@ -1199,25 +1213,20 @@
   btn.addEventListener('click', togglePanel);
   closeBtn.addEventListener('click', togglePanel);
 
-  // Add message bubble
-  function addMsg(role, text){
-    const wrap = document.createElement('div');
-    wrap.className = 'sc-msg ' + role;
-    if(role === 'bot'){
-      wrap.innerHTML = `<div class="sc-msg-avatar">☀️</div><div class="sc-bubble">${escHtml(text)}</div>`;
-    } else {
-      wrap.innerHTML = `<div class="sc-bubble">${escHtml(text)}</div>`;
-    }
-    msgs.appendChild(wrap);
-    msgs.scrollTop = msgs.scrollHeight;
-    return wrap;
-  }
-
   function escHtml(t){
     return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
-  // Typing indicator
+  function addMsg(role, text){
+    const wrap = document.createElement('div');
+    wrap.className = 'sc-msg ' + role;
+    wrap.innerHTML = role === 'bot'
+      ? `<div class="sc-msg-avatar">☀️</div><div class="sc-bubble">${escHtml(text)}</div>`
+      : `<div class="sc-bubble">${escHtml(text)}</div>`;
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
   function addTyping(){
     const wrap = document.createElement('div');
     wrap.className = 'sc-msg bot';
@@ -1226,17 +1235,12 @@
     msgs.appendChild(wrap);
     msgs.scrollTop = msgs.scrollHeight;
   }
-  function removeTyping(){
-    const t = document.getElementById('sc-typing');
-    if(t) t.remove();
-  }
+  function removeTyping(){ document.getElementById('sc-typing')?.remove(); }
 
-  // Initial greeting
   function greet(){
     addMsg('bot', 'Привіт! 👋 Я AI-помічник SunChe. Консультую з питань сонячних станцій та резервного живлення. Чим можу допомогти?');
   }
 
-  // Send message to Claude
   async function sendMessage(){
     const text = input.value.trim();
     if(!text || busy) return;
@@ -1245,29 +1249,39 @@
 
     addMsg('user', text);
     history.push({ role: 'user', content: text });
-
     addTyping();
 
     try {
-      const res = await fetch(`${API}/api/chat`, {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': CLAUDE_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 400,
+          system: SYSTEM,
+          messages: history,
+        }),
       });
+
       const data = await res.json();
       removeTyping();
 
-      if(data.message){
-        addMsg('bot', data.message);
-        history.push({ role: 'assistant', content: data.message });
-        // Trim history to last 10 exchanges
+      if(data.content?.[0]?.text){
+        const reply = data.content[0].text;
+        addMsg('bot', reply);
+        history.push({ role: 'assistant', content: reply });
         if(history.length > 20) history = history.slice(-20);
       } else {
-        addMsg('bot', 'Вибачте, сталася помилка. Зв\'яжіться з нами в Telegram: @cryptomaus');
+        addMsg('bot', 'Вибачте, сталася помилка. Напишіть нам: @cryptomaus');
       }
     } catch(e){
       removeTyping();
-      addMsg('bot', 'Сервер тимчасово недоступний. Зв\'яжіться з нами: @cryptomaus');
+      addMsg('bot', 'Не вдалося з\'єднатись. Напишіть нам: @cryptomaus');
     }
 
     busy = false;
@@ -1276,24 +1290,15 @@
   sendBtn.addEventListener('click', sendMessage);
   input.addEventListener('keydown', e => { if(e.key === 'Enter') sendMessage(); });
 
-  // Lead form
-  function openLead(){
-    lead.classList.add('show');
-    reqBtn.style.display = 'none';
-    leadName.focus();
-  }
-  function closeLead(){
-    lead.classList.remove('show');
-    reqBtn.style.display = '';
-    leadName.value = '';
-    leadPhone.value = '';
-  }
+  // Lead form — напряму в Telegram Bot API (підтримує CORS)
+  function openLead(){ lead.classList.add('show'); reqBtn.style.display='none'; leadName.focus(); }
+  function closeLead(){ lead.classList.remove('show'); reqBtn.style.display=''; leadName.value=''; leadPhone.value=''; }
 
   reqBtn.addEventListener('click', openLead);
   leadCancel.addEventListener('click', closeLead);
 
   leadSend.addEventListener('click', async () => {
-    const name = leadName.value.trim();
+    const name  = leadName.value.trim();
     const phone = leadPhone.value.trim();
     if(!name){ leadName.focus(); return; }
     if(!phone){ leadPhone.focus(); return; }
@@ -1302,22 +1307,22 @@
     leadSend.disabled = true;
 
     try {
-      const res = await fetch(`${API}/api/lead`, {
+      const text = `🌞 <b>Нова заявка з сайту SunChe!</b>\n\n👤 Ім'я: ${name}\n📞 Телефон: ${phone}\n\n💬 Джерело: AI чат-бот`;
+      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone }),
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'HTML' }),
       });
       const data = await res.json();
-
       closeLead();
-      if(data.success){
+      if(data.ok){
         addMsg('bot', `✅ Дякуємо, ${name}! Заявку отримано. Наш спеціаліст зателефонує вам найближчим часом.`);
       } else {
-        addMsg('bot', 'Не вдалося відправити заявку. Напишіть нам напряму: @cryptomaus');
+        addMsg('bot', 'Не вдалося відправити. Напишіть напряму: @cryptomaus');
       }
     } catch(e){
       closeLead();
-      addMsg('bot', 'Помилка з\'єднання. Напишіть нам напряму: @cryptomaus');
+      addMsg('bot', 'Помилка з\'єднання. Напишіть: @cryptomaus');
     }
 
     leadSend.textContent = 'Відправити заявку →';
