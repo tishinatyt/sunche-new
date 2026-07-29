@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SunChe — Сонячні станції та резервне живлення по всій Україні</title>
-  <meta name="description" content="Монтаж сонячних електростанцій та систем резервного живлення по всій Україні. Кредит 0% від ПриватБанку. Гарантія 5 років." />
+  <meta name="description" content="Монтаж сонячних електростанцій та систем резервного живлення по всій Україні. Кредитування на вигідних умовах. Гарантія 5 років." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -369,53 +369,28 @@
 
     /* ── CREDIT ── */
     #credit { background: var(--bg); }
-    .credit-wrap {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 28px; padding: 52px; overflow: hidden; position: relative;
+    .credit-compact {
+      background: var(--white); border: 1px solid var(--border2);
+      border-radius: 20px; padding: 36px 40px;
+      display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(249,115,22,.07);
     }
-    .credit-wrap::before {
-      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 6px;
-      background: linear-gradient(to bottom, var(--sky), #38bdf8);
+    .credit-compact::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--sun), var(--gold));
     }
-    .credit-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    .credit-compact-icon {
+      font-size: 40px; flex-shrink: 0;
     }
-    @media(max-width:768px){ .credit-grid { grid-template-columns: 1fr; gap: 36px; } }
-
-    .credit-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd;
-      border-radius: 100px; padding: 5px 14px;
-      font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .credit-title {
+    .credit-compact-body { flex: 1; min-width: 220px; }
+    .credit-compact-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(22px, 3.5vw, 36px); font-weight: 800; margin-bottom: 14px; line-height: 1.2;
+      font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px;
     }
-    .credit-title .sky { color: var(--sky); }
-    .credit-desc { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
-    .credit-stats { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 8px; }
-    .credit-stat-val {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 30px; font-weight: 800; color: var(--sky); line-height: 1;
-    }
-    .credit-stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
-
-    .credit-right {}
-    .credit-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-    .credit-item {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 16px 0; border-bottom: 1px solid var(--border);
-    }
-    .credit-item:first-child { border-top: 1px solid var(--border); }
-    .credit-item-label { font-size: 14px; color: var(--muted); }
-    .credit-item-val {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 18px; font-weight: 800; color: var(--text);
-    }
-    .credit-item-val.sky { color: var(--sky); }
-    .credit-note { font-size: 12px; color: var(--muted2); margin-top: 14px; line-height: 1.6; }
+    .credit-compact-text { font-size: 15px; color: var(--muted); line-height: 1.65; }
+    .credit-compact-cta { flex-shrink: 0; }
+    @media(max-width:600px){ .credit-compact { padding: 28px 24px; } .credit-compact-cta { width: 100%; } }
 
     /* ── PARTNERS ── */
     #partners {
@@ -576,7 +551,7 @@
       <ul class="nav-links">
         <li><a href="#services">Послуги</a></li>
         <li><a href="#how">Як працюємо</a></li>
-        <li><a href="#credit">Кредит 0%</a></li>
+        <li><a href="#credit">Кредитування</a></li>
         <li><a href="#contacts">Контакти</a></li>
       </ul>
       <div class="nav-cta">
@@ -603,7 +578,7 @@
         </h1>
         <p class="hero-sub reveal rd2">
           Монтаж по всій Україні.<br/>
-          <strong>Кредит 0% від ПриватБанку</strong> — програма «Джерела енергії».
+          <strong>Кредитування на вигідних умовах</strong> — працюємо з будь-яким банком.
         </p>
         <div class="hero-btns reveal rd2">
           <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun">☀ Розрахувати вартість</a>
@@ -620,6 +595,90 @@
       </div>
 
       <div class="hero-visual reveal rd2">
+        <!-- Solar illustration SVG -->
+        <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-bottom:18px;display:block;" aria-hidden="true">
+          <!-- Sky gradient background -->
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fff8e8"/>
+              <stop offset="100%" stop-color="#fef3c7"/>
+            </linearGradient>
+            <linearGradient id="sunGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fbbf24"/>
+              <stop offset="100%" stop-color="#f97316"/>
+            </linearGradient>
+            <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1c1408"/>
+              <stop offset="100%" stop-color="#292524"/>
+            </linearGradient>
+            <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c2410c"/>
+              <stop offset="100%" stop-color="#9a3412"/>
+            </linearGradient>
+            <linearGradient id="energyGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#f97316" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.2"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="200" fill="url(#skyGrad)" rx="16"/>
+
+          <!-- Sun -->
+          <circle cx="380" cy="52" r="32" fill="url(#sunGrad)" opacity="0.95"/>
+          <!-- Sun rays -->
+          <g stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" opacity="0.7">
+            <line x1="380" y1="10" x2="380" y2="4"/>
+            <line x1="380" y1="94" x2="380" y2="100"/>
+            <line x1="338" y1="52" x2="332" y2="52"/>
+            <line x1="422" y1="52" x2="428" y2="52"/>
+            <line x1="350" y1="22" x2="346" y2="18"/>
+            <line x1="410" y1="82" x2="414" y2="86"/>
+            <line x1="410" y1="22" x2="414" y2="18"/>
+            <line x1="350" y1="82" x2="346" y2="86"/>
+          </g>
+
+          <!-- House body -->
+          <rect x="100" y="118" width="200" height="70" fill="#fef3c7" rx="2"/>
+          <!-- House door -->
+          <rect x="175" y="148" width="30" height="40" fill="#fed7aa" rx="3"/>
+          <!-- House windows -->
+          <rect x="118" y="136" width="28" height="22" fill="#bae6fd" rx="3" opacity="0.8"/>
+          <rect x="254" y="136" width="28" height="22" fill="#bae6fd" rx="3" opacity="0.8"/>
+
+          <!-- Roof -->
+          <polygon points="88,122 200,58 312,122" fill="url(#roofGrad)"/>
+          <!-- Roof ridge line -->
+          <line x1="88" y1="122" x2="312" y2="122" stroke="#9a3412" stroke-width="2"/>
+
+          <!-- Solar panels on roof (left slope) -->
+          <g transform="rotate(-28, 144, 90)">
+            <rect x="108" y="82" width="38" height="18" fill="url(#panelGrad)" rx="2"/>
+            <line x1="108" y1="88" x2="146" y2="88" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
+            <line x1="108" y1="94" x2="146" y2="94" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
+            <line x1="121" y1="82" x2="121" y2="100" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
+            <line x1="133" y1="82" x2="133" y2="100" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
+          </g>
+          <g transform="rotate(-28, 165, 78)">
+            <rect x="130" y="70" width="38" height="18" fill="url(#panelGrad)" rx="2"/>
+            <line x1="130" y1="76" x2="168" y2="76" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
+            <line x1="130" y1="82" x2="168" y2="82" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
+            <line x1="143" y1="70" x2="143" y2="88" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
+            <line x1="155" y1="70" x2="155" y2="88" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
+          </g>
+
+          <!-- Energy flow lines from panels to house -->
+          <path d="M200 110 Q200 130 200 148" stroke="url(#energyGrad)" stroke-width="2" fill="none" stroke-dasharray="4 3" opacity="0.8"/>
+
+          <!-- Energy flow from sun to panels -->
+          <path d="M355 62 Q295 80 210 105" stroke="#fbbf24" stroke-width="1.5" fill="none" stroke-dasharray="5 4" opacity="0.5"/>
+
+          <!-- Energy dots (animated via CSS if desired) -->
+          <circle cx="280" cy="84" r="3" fill="#f97316" opacity="0.8"/>
+          <circle cx="245" cy="95" r="3" fill="#fbbf24" opacity="0.7"/>
+          <circle cx="200" cy="118" r="3" fill="#f97316" opacity="0.8"/>
+
+          <!-- Ground / grass line -->
+          <rect x="60" y="186" width="360" height="14" fill="#dcfce7" rx="7" opacity="0.6"/>
+        </svg>
         <div class="sun-card">
           <div class="sun-card-title">// Ваша станція онлайн</div>
           <div class="sun-stat">
@@ -667,8 +726,8 @@
       </div>
       <div class="benefit-card reveal rd2">
         <div class="benefit-icon">💳</div>
-        <div class="benefit-title">Кредит 0% ПриватБанк</div>
-        <div class="benefit-text">Програма «Джерела енергії». До 480 000 грн, до 60 місяців, ставка 0%.</div>
+        <div class="benefit-title">Кредитування</div>
+        <div class="benefit-text">Працюємо з будь-яким банком. Кредит або розстрочка на вигідних умовах.</div>
       </div>
       <div class="benefit-card reveal rd3">
         <div class="benefit-icon">🚗</div>
@@ -790,55 +849,14 @@
 <!-- CREDIT -->
 <section id="credit">
   <div class="container">
-    <div class="credit-wrap">
-      <div class="credit-grid">
-        <div class="credit-left">
-          <div class="credit-badge reveal">💳 ПриватБанк</div>
-          <h2 class="credit-title reveal rd1">Програма<br/>«Джерела енергії»<br/><span class="sky">Кредит 0%</span></h2>
-          <p class="credit-desc reveal rd1">Встановіть сонячну станцію зараз — платіть частинами без переплати. Спеціальна програма ПриватБанку для відновлюваної енергетики.</p>
-          <div class="credit-stats reveal rd2">
-            <div>
-              <div class="credit-stat-val">0%</div>
-              <div class="credit-stat-label">Ставка кредиту</div>
-            </div>
-            <div>
-              <div class="credit-stat-val">60</div>
-              <div class="credit-stat-label">Місяців терміну</div>
-            </div>
-            <div>
-              <div class="credit-stat-val">480К</div>
-              <div class="credit-stat-label">Грн максимум</div>
-            </div>
-          </div>
-          <div style="margin-top:28px;" class="reveal rd2">
-            <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun">Розрахувати кредит →</a>
-          </div>
-        </div>
-        <div class="credit-right reveal rd1">
-          <ul class="credit-list">
-            <li class="credit-item">
-              <span class="credit-item-label">Сума кредиту</span>
-              <span class="credit-item-val">100 000 — 480 000 ₴</span>
-            </li>
-            <li class="credit-item">
-              <span class="credit-item-label">Процентна ставка</span>
-              <span class="credit-item-val sky">0%</span>
-            </li>
-            <li class="credit-item">
-              <span class="credit-item-label">Термін</span>
-              <span class="credit-item-val">до 60 місяців</span>
-            </li>
-            <li class="credit-item">
-              <span class="credit-item-label">Переплата</span>
-              <span class="credit-item-val sky">0 грн</span>
-            </li>
-            <li class="credit-item">
-              <span class="credit-item-label">Перший внесок</span>
-              <span class="credit-item-val">від 20%</span>
-            </li>
-          </ul>
-          <div class="credit-note">* Кредит надається АТ КБ «ПриватБанк». Умови можуть змінюватись. Уточнюйте у менеджера.</div>
-        </div>
+    <div class="credit-compact reveal">
+      <div class="credit-compact-icon">💳</div>
+      <div class="credit-compact-body">
+        <div class="credit-compact-title">Кредитування та розстрочка</div>
+        <div class="credit-compact-text">Працюємо з будь-якими банками — допоможемо оформити кредит або розстрочку на вигідних умовах. Консультація безкоштовна.</div>
+      </div>
+      <div class="credit-compact-cta">
+        <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun">Отримати консультацію →</a>
       </div>
     </div>
   </div>
@@ -1182,7 +1200,7 @@
 - Монтажем сонячних електростанцій (СЕС) під ключ — гарантія 5 років
 - Резервним живленням: акумулятори, інвертори, ДБЖ
 - Обслуговуванням обладнання
-Кредит 0% від ПриватБанку («Джерела енергії»): 100 000–480 000 грн, до 60 місяців.
+Кредитування та розстрочка: працюємо з будь-якими банками, консультація безкоштовна.
 Безкоштовний виїзд спеціаліста. Бренди: Jinko, Canadian Solar, LONGi, JA Solar, Trina.
 Працюємо по всій Україні. Telegram: @cryptomaus.
 Відповідай коротко — 2–3 речення. На питання про ціну — скажи що точна вартість після виїзду, запропонуй залишити заявку.`;
