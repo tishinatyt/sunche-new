@@ -595,90 +595,11 @@
       </div>
 
       <div class="hero-visual reveal rd2">
-        <!-- Solar illustration SVG -->
-        <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-bottom:18px;display:block;" aria-hidden="true">
-          <!-- Sky gradient background -->
-          <defs>
-            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#fff8e8"/>
-              <stop offset="100%" stop-color="#fef3c7"/>
-            </linearGradient>
-            <linearGradient id="sunGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#fbbf24"/>
-              <stop offset="100%" stop-color="#f97316"/>
-            </linearGradient>
-            <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#1c1408"/>
-              <stop offset="100%" stop-color="#292524"/>
-            </linearGradient>
-            <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#c2410c"/>
-              <stop offset="100%" stop-color="#9a3412"/>
-            </linearGradient>
-            <linearGradient id="energyGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#f97316" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.2"/>
-            </linearGradient>
-          </defs>
-          <rect width="480" height="200" fill="url(#skyGrad)" rx="16"/>
-
-          <!-- Sun -->
-          <circle cx="380" cy="52" r="32" fill="url(#sunGrad)" opacity="0.95"/>
-          <!-- Sun rays -->
-          <g stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" opacity="0.7">
-            <line x1="380" y1="10" x2="380" y2="4"/>
-            <line x1="380" y1="94" x2="380" y2="100"/>
-            <line x1="338" y1="52" x2="332" y2="52"/>
-            <line x1="422" y1="52" x2="428" y2="52"/>
-            <line x1="350" y1="22" x2="346" y2="18"/>
-            <line x1="410" y1="82" x2="414" y2="86"/>
-            <line x1="410" y1="22" x2="414" y2="18"/>
-            <line x1="350" y1="82" x2="346" y2="86"/>
-          </g>
-
-          <!-- House body -->
-          <rect x="100" y="118" width="200" height="70" fill="#fef3c7" rx="2"/>
-          <!-- House door -->
-          <rect x="175" y="148" width="30" height="40" fill="#fed7aa" rx="3"/>
-          <!-- House windows -->
-          <rect x="118" y="136" width="28" height="22" fill="#bae6fd" rx="3" opacity="0.8"/>
-          <rect x="254" y="136" width="28" height="22" fill="#bae6fd" rx="3" opacity="0.8"/>
-
-          <!-- Roof -->
-          <polygon points="88,122 200,58 312,122" fill="url(#roofGrad)"/>
-          <!-- Roof ridge line -->
-          <line x1="88" y1="122" x2="312" y2="122" stroke="#9a3412" stroke-width="2"/>
-
-          <!-- Solar panels on roof (left slope) -->
-          <g transform="rotate(-28, 144, 90)">
-            <rect x="108" y="82" width="38" height="18" fill="url(#panelGrad)" rx="2"/>
-            <line x1="108" y1="88" x2="146" y2="88" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
-            <line x1="108" y1="94" x2="146" y2="94" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
-            <line x1="121" y1="82" x2="121" y2="100" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
-            <line x1="133" y1="82" x2="133" y2="100" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
-          </g>
-          <g transform="rotate(-28, 165, 78)">
-            <rect x="130" y="70" width="38" height="18" fill="url(#panelGrad)" rx="2"/>
-            <line x1="130" y1="76" x2="168" y2="76" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
-            <line x1="130" y1="82" x2="168" y2="82" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
-            <line x1="143" y1="70" x2="143" y2="88" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
-            <line x1="155" y1="70" x2="155" y2="88" stroke="#fbbf24" stroke-width="0.7" opacity="0.4"/>
-          </g>
-
-          <!-- Energy flow lines from panels to house -->
-          <path d="M200 110 Q200 130 200 148" stroke="url(#energyGrad)" stroke-width="2" fill="none" stroke-dasharray="4 3" opacity="0.8"/>
-
-          <!-- Energy flow from sun to panels -->
-          <path d="M355 62 Q295 80 210 105" stroke="#fbbf24" stroke-width="1.5" fill="none" stroke-dasharray="5 4" opacity="0.5"/>
-
-          <!-- Energy dots (animated via CSS if desired) -->
-          <circle cx="280" cy="84" r="3" fill="#f97316" opacity="0.8"/>
-          <circle cx="245" cy="95" r="3" fill="#fbbf24" opacity="0.7"/>
-          <circle cx="200" cy="118" r="3" fill="#f97316" opacity="0.8"/>
-
-          <!-- Ground / grass line -->
-          <rect x="60" y="186" width="360" height="14" fill="#dcfce7" rx="7" opacity="0.6"/>
-        </svg>
+        <img
+          src="hero-solar.png"
+          alt="Будинок з сонячними панелями на даху"
+          style="border-radius:16px;max-width:100%;width:500px;box-shadow:0 8px 32px rgba(0,0,0,0.2);margin-top:24px;display:block;"
+        />
         <div class="sun-card">
           <div class="sun-card-title">// Ваша станція онлайн</div>
           <div class="sun-stat">
