@@ -3,62 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SunChe — Сонячні станції та резервне живлення по всій Україні</title>
-  <meta name="description" content="Монтаж сонячних електростанцій та систем резервного живлення по всій Україні. Кредитування на вигідних умовах. Гарантія 5 років." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <title>Сонячні станції та резервне живлення у Чернігові | SunChe</title>
+  <meta name="description" content="SunChe: сонячні електростанції під ключ і резервне живлення у Чернігові та області. Підбір панелей, інверторів і акумуляторів, монтаж та обслуговування." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#edf6fd" />
+  <link rel="canonical" href="https://tishinatyt.github.io/sunche-new/" />
+  <link rel="icon" type="image/svg+xml" href="assets/sunche-icon.svg" />
+  <link rel="sitemap" type="application/xml" href="sitemap.xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="uk_UA" />
+  <meta property="og:site_name" content="SunChe" />
+  <meta property="og:title" content="Сонячні станції та резервне живлення у Чернігові | SunChe" />
+  <meta property="og:description" content="SunChe: сонячні електростанції під ключ і резервне живлення у Чернігові та області. Підбір панелей, інверторів і акумуляторів, монтаж та обслуговування." />
+  <meta property="og:url" content="https://tishinatyt.github.io/sunche-new/" />
+  <meta property="og:image" content="https://tishinatyt.github.io/sunche-new/assets/solar-social.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="800" />
+  <meta property="og:image:alt" content="Будинок із сонячними панелями — рішення SunChe для енергонезалежності" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Сонячні станції та резервне живлення у Чернігові | SunChe" />
+  <meta name="twitter:description" content="SunChe: сонячні електростанції під ключ і резервне живлення у Чернігові та області. Підбір панелей, інверторів і акумуляторів, монтаж та обслуговування." />
+  <meta name="twitter:image" content="https://tishinatyt.github.io/sunche-new/assets/solar-social.jpg" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sun:     #f97316;
-      --sun2:    #fb923c;
-      --gold:    #fbbf24;
-      --gold2:   #fde68a;
+      --sun:     #1264a3;
+      --sun2:    #3e91ca;
+      --gold:    #1d74b0;
+      --gold2:   #d4ebfb;
       --sky:     #0ea5e9;
-      --bg:      #fffbf3;
-      --bg2:     #fff8e8;
-      --bg3:     #fef3c7;
+      --bg:      #f5faff;
+      --bg2:     #edf6fd;
+      --bg3:     #e0f0fc;
       --white:   #ffffff;
-      --text:    #1c1408;
-      --muted:   #78716c;
-      --muted2:  #a8a29e;
-      --border:  #fde8c8;
-      --border2: #fed7aa;
+      --text:    #12364e;
+      --muted:   #4c6577;
+      --muted2:  #617c8e;
+      --border:  #d5e6f3;
+      --border2: #bad9ef;
       --green:   #16a34a;
     }
 
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Outfit', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg); color: var(--text);
-      line-height: 1.65; overflow-x: hidden; cursor: none;
-    }
-
-    /* ── GRAIN ── */
-    body::before {
-      content: ''; position: fixed; inset: 0; z-index: 998; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 160px; opacity: 0.016;
-    }
-
-    /* ── CURSOR ── */
-    #cursor {
-      position: fixed; z-index: 9999; width: 10px; height: 10px; border-radius: 50%;
-      background: var(--sun); pointer-events: none;
-      transform: translate(-50%,-50%); transition: width .2s, height .2s, opacity .2s;
-    }
-    #cursor.hover { width: 38px; height: 38px; opacity: .18; }
-    #cursor-ring {
-      position: fixed; z-index: 9998; width: 30px; height: 30px; border-radius: 50%;
-      border: 1.5px solid rgba(249,115,22,.3); pointer-events: none;
-      transform: translate(-50%,-50%);
+      line-height: 1.65; overflow-x: hidden; cursor: auto;
     }
 
     /* ── UTILS ── */
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-    .heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .heading { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 
     .tag {
       display: inline-flex; align-items: center; gap: 7px;
@@ -72,9 +68,9 @@
     /* ── BUTTONS ── */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 700;
       font-size: 15px; padding: 14px 30px; border-radius: 100px;
-      text-decoration: none; border: none; cursor: none;
+      text-decoration: none; border: none; cursor: auto;
       transition: transform .2s, box-shadow .22s;
       position: relative; overflow: hidden;
     }
@@ -86,14 +82,14 @@
     .btn:hover::after { opacity: 1; }
     .btn-sun {
       background: linear-gradient(135deg, var(--sun), var(--gold));
-      color: #fff; box-shadow: 0 6px 24px rgba(249,115,22,.32);
+      color: #fff; box-shadow: 0 6px 24px rgba(18,100,163,.32);
     }
-    .btn-sun:hover { box-shadow: 0 10px 36px rgba(249,115,22,.45); }
+    .btn-sun:hover { box-shadow: 0 10px 36px rgba(18,100,163,.45); }
     .btn-outline {
       background: transparent; color: var(--sun);
       border: 2px solid var(--border2); box-shadow: none;
     }
-    .btn-outline:hover { border-color: var(--sun); box-shadow: 0 6px 20px rgba(249,115,22,.15); }
+    .btn-outline:hover { border-color: var(--sun); box-shadow: 0 6px 20px rgba(18,100,163,.15); }
     .btn-white {
       background: #fff; color: var(--sun);
       box-shadow: 0 6px 24px rgba(0,0,0,.12);
@@ -103,7 +99,7 @@
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,251,243,.92); backdrop-filter: blur(16px);
+      background: rgba(245,250,255,.92); backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -116,10 +112,10 @@
       width: 36px; height: 36px; border-radius: 50%;
       background: linear-gradient(135deg, var(--sun), var(--gold));
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; box-shadow: 0 4px 12px rgba(249,115,22,.3);
+      font-size: 18px; box-shadow: 0 4px 12px rgba(18,100,163,.3);
     }
     .logo-name {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 20px; font-weight: 800; color: var(--text);
     }
     .logo-name span { color: var(--sun); }
@@ -133,7 +129,7 @@
     .nav-links a:hover { color: var(--sun); }
     .nav-cta { display: flex; align-items: center; gap: 12px; }
     .nav-phone {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px; font-weight: 700; color: var(--text);
       text-decoration: none; transition: color .2s;
     }
@@ -143,7 +139,7 @@
     /* ── HERO ── */
     #hero {
       padding: 80px 0 90px; position: relative; overflow: hidden;
-      background: linear-gradient(160deg, #fffbf3 0%, #fff8e8 50%, #fef3c7 100%);
+      background: linear-gradient(160deg, #f5faff 0%, #edf6fd 50%, #e0f0fc 100%);
     }
 
     /* sun ray background */
@@ -154,7 +150,7 @@
     .ray {
       position: absolute; top: 50%; left: 50%;
       width: 2px; height: 340px; transform-origin: top center;
-      background: linear-gradient(to bottom, rgba(251,191,36,.22), transparent);
+      background: linear-gradient(to bottom, rgba(56,162,219,.22), transparent);
       border-radius: 1px;
     }
 
@@ -166,7 +162,7 @@
 
     .hero-eyebrow { margin-bottom: 22px; }
     .hero-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: clamp(34px, 5vw, 58px); font-weight: 800;
       line-height: 1.1; letter-spacing: -.5px; margin-bottom: 18px;
     }
@@ -195,7 +191,7 @@
 
     .sun-card {
       background: var(--white); border-radius: 24px;
-      padding: 36px; box-shadow: 0 20px 60px rgba(249,115,22,.1), 0 4px 16px rgba(0,0,0,.06);
+      padding: 36px; box-shadow: 0 20px 60px rgba(18,100,163,.1), 0 4px 16px rgba(0,0,0,.06);
       border: 1px solid var(--border);
       position: relative; overflow: hidden;
     }
@@ -204,7 +200,7 @@
       background: linear-gradient(90deg, var(--sun), var(--gold));
     }
     .sun-card-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px; font-weight: 700; color: var(--muted); text-transform: uppercase;
       letter-spacing: .08em; margin-bottom: 20px;
     }
@@ -212,7 +208,7 @@
     .sun-stat:last-of-type { border-bottom: none; }
     .sun-stat-label { font-size: 14px; color: var(--muted); }
     .sun-stat-val {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 26px; font-weight: 800; color: var(--sun);
     }
     .sun-stat-val.ok { color: var(--green); }
@@ -232,7 +228,7 @@
     section { padding: 96px 0; }
     .sec-label { margin-bottom: 14px; }
     .sec-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: clamp(26px, 4vw, 44px); font-weight: 800;
       line-height: 1.15; letter-spacing: -.3px; margin-bottom: 14px;
     }
@@ -259,7 +255,7 @@
       background: linear-gradient(90deg, var(--sun), var(--gold));
       transform: scaleX(0); transform-origin: left; transition: transform .35s;
     }
-    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(249,115,22,.1); border-color: var(--border2); }
+    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(18,100,163,.1); border-color: var(--border2); }
     .benefit-card:hover::after { transform: scaleX(1); }
     .benefit-icon {
       width: 60px; height: 60px; border-radius: 16px; margin: 0 auto 18px;
@@ -267,7 +263,7 @@
       display: flex; align-items: center; justify-content: center; font-size: 28px;
     }
     .benefit-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 16px; font-weight: 700; margin-bottom: 8px;
     }
     .benefit-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
@@ -285,8 +281,8 @@
       transition: transform .22s, box-shadow .22s;
       position: relative; overflow: hidden;
     }
-    .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(249,115,22,.1); }
-    .service-card.featured { border-color: var(--sun); box-shadow: 0 8px 32px rgba(249,115,22,.12); }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(18,100,163,.1); }
+    .service-card.featured { border-color: var(--sun); box-shadow: 0 8px 32px rgba(18,100,163,.12); }
     .service-card.featured::before {
       content: '★ Популярне'; position: absolute; top: 18px; right: 18px;
       background: var(--sun); color: #fff; font-size: 11px; font-weight: 700;
@@ -298,7 +294,7 @@
       display: flex; align-items: center; justify-content: center; font-size: 30px;
     }
     .service-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 20px; font-weight: 800; margin-bottom: 12px;
     }
     .service-text { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
@@ -332,19 +328,19 @@
       width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 20px;
       background: linear-gradient(135deg, var(--sun), var(--gold));
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 800; color: #fff;
-      box-shadow: 0 8px 24px rgba(249,115,22,.3);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 24px; font-weight: 800; color: #fff;
+      box-shadow: 0 8px 24px rgba(18,100,163,.3);
     }
     .step-icon { font-size: 24px; margin-bottom: 10px; }
     .step-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 15px; font-weight: 700; margin-bottom: 8px;
     }
     .step-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
     /* ── CALCULATOR CTA ── */
     #calc {
-      background: linear-gradient(135deg, var(--sun) 0%, #ea580c 40%, var(--gold) 100%);
+      background: linear-gradient(135deg, var(--sun) 0%, #175b95 40%, var(--gold) 100%);
       padding: 80px 0; text-align: center; position: relative; overflow: hidden;
     }
     #calc::before {
@@ -353,7 +349,7 @@
     }
     .calc-inner { position: relative; z-index: 1; }
     .calc-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: clamp(28px, 4.5vw, 52px); font-weight: 800; color: #fff;
       line-height: 1.1; margin-bottom: 16px;
     }
@@ -374,7 +370,7 @@
       border-radius: 20px; padding: 36px 40px;
       display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
       position: relative; overflow: hidden;
-      box-shadow: 0 4px 20px rgba(249,115,22,.07);
+      box-shadow: 0 4px 20px rgba(18,100,163,.07);
     }
     .credit-compact::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
@@ -385,7 +381,7 @@
     }
     .credit-compact-body { flex: 1; min-width: 220px; }
     .credit-compact-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px;
     }
     .credit-compact-text { font-size: 15px; color: var(--muted); line-height: 1.65; }
@@ -405,13 +401,13 @@
     .partners-left {}
     .p-badge {
       display: inline-flex; align-items: center; gap: 7px;
-      background: rgba(249,115,22,.15); border: 1px solid rgba(249,115,22,.3);
+      background: rgba(18,100,163,.15); border: 1px solid rgba(18,100,163,.3);
       border-radius: 100px; padding: 5px 14px;
       font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
       color: var(--sun); margin-bottom: 20px;
     }
     .partners-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: clamp(24px, 3.5vw, 38px); font-weight: 800; color: #fff;
       line-height: 1.2; margin-bottom: 16px;
     }
@@ -429,7 +425,7 @@
       border-radius: 20px; padding: 36px;
     }
     .partners-form-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px;
     }
     .perk-row {
@@ -448,7 +444,7 @@
     @media(max-width:768px){ .contacts-grid { grid-template-columns: 1fr; } }
 
     .contacts-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: clamp(26px, 3.5vw, 40px); font-weight: 800;
       margin-bottom: 12px; line-height: 1.2;
     }
@@ -463,7 +459,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.04);
       transition: transform .2s, box-shadow .2s, border-color .2s;
     }
-    .contact-card:hover { transform: translateX(4px); box-shadow: 0 6px 24px rgba(249,115,22,.1); border-color: var(--border2); }
+    .contact-card:hover { transform: translateX(4px); box-shadow: 0 6px 24px rgba(18,100,163,.1); border-color: var(--border2); }
     .contact-icon {
       width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center; font-size: 20px;
@@ -479,10 +475,10 @@
     .cta-box {
       background: linear-gradient(135deg, var(--sun), var(--gold));
       border-radius: 24px; padding: 44px 36px; text-align: center;
-      box-shadow: 0 16px 48px rgba(249,115,22,.25);
+      box-shadow: 0 16px 48px rgba(18,100,163,.25);
     }
     .cta-box-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 10px;
     }
     .cta-box-sub { font-size: 15px; color: rgba(255,255,255,.8); margin-bottom: 28px; line-height: 1.65; }
@@ -503,7 +499,7 @@
       display: flex; align-items: center; justify-content: center; font-size: 14px;
     }
     .footer-name {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 16px; font-weight: 800; color: #fff;
     }
     .footer-name span { color: var(--gold); }
@@ -518,7 +514,7 @@
       background: var(--white); border: 1px solid var(--border);
       border-radius: 100px; padding: 10px 10px 10px 22px;
       display: flex; align-items: center; gap: 14px;
-      box-shadow: 0 12px 48px rgba(249,115,22,.18);
+      box-shadow: 0 12px 48px rgba(18,100,163,.18);
       white-space: nowrap;
     }
     #sticky.show { transform: translateX(-50%) translateY(0); opacity: 1; }
@@ -533,15 +529,238 @@
     .rd2 { transition-delay: .2s; }
     .rd3 { transition-delay: .3s; }
     .rd4 { transition-delay: .4s; }
+
+    .reveal { opacity: 1; transform: none; transition: none; }
+    section { scroll-margin-top: 76px; }
+    :focus-visible { outline: 3px solid #1264a3; outline-offset: 4px; }
+    .skip-link { position: fixed; left: 16px; top: -80px; z-index: 10000; padding: 12px 18px; background: white; color: #12364e; border-radius: 8px; }
+    .skip-link:focus { top: 12px; }
+    #hero { padding: 60px 0 70px; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr) 460px; gap: 44px; }
+    .hero-title { font-size: clamp(32px, 4.2vw, 50px); letter-spacing: -.035em; }
+    .hero-sub { font-size: 17px; }
+    .hero-photo { display: block; width: 100%; height: auto; border-radius: 22px 22px 0 0; box-shadow: 0 8px 28px rgba(18,100,163,.1); }
+    .sun-card { padding: 22px 28px; border-radius: 0 0 22px 22px; }
+    .sun-card-title { font-size: 11px; margin-bottom: 8px; }
+    .sun-stat { padding: 9px 0; }
+    .sun-stat-val { font-size: 22px; }
+    .demo-note { font-size: 11px; line-height: 1.5; color: var(--muted); margin-bottom: 8px; }
+    #partners { background: linear-gradient(135deg, #e7f3fc, #d8ecfb); }
+    .partners-title, .partners-form-title, .perk-text { color: var(--text); }
+    .partners-desc, .partners-perks li { color: var(--muted); }
+    .partners-right { background: rgba(255,255,255,.8); border-color: var(--border2); }
+    .perk-row { border-color: var(--border); }
+    footer { background: #e5f2fb; border-color: var(--border2); }
+    .footer-name { color: var(--text); }
+    .footer-meta { color: var(--muted); }
+    #faq { background: white; }
+    #faq .sec-header { margin-bottom: 30px; }
+    #faq .tag { margin-bottom: 16px; }
+    .faq-list { display: grid; gap: 12px; max-width: 860px; }
+    .faq-list details { padding: 20px 24px; background: var(--bg); border: 1px solid var(--border); border-radius: 16px; }
+    .faq-list summary { cursor: pointer; font-size: 16px; font-weight: 650; color: var(--text); }
+    .faq-list p { padding-top: 14px; color: var(--muted); }
+    #sticky { pointer-events: none; }
+    #sticky.show { pointer-events: auto; }
+    @media(max-width:1050px) { .nav-links { gap: 16px; } .nav-phone { display: none; } }
+    @media(max-width:900px) { .hero-grid { grid-template-columns: 1fr; } .hero-left { max-width: 620px; } }
+    @media(max-width:600px) {
+      .container { padding-inline: 20px; }
+      section { padding-block: 64px; }
+      #hero { padding: 44px 0 54px; }
+      .nav-inner { gap: 8px; }
+      .hero-btns .btn { justify-content: center; width: 100%; padding-inline: 16px; }
+      .hero-sub { margin-bottom: 26px; }
+      .hero-btns { margin-bottom: 28px; }
+      .step { padding-block: 18px; }
+      .step-num { margin-bottom: 12px; }
+      .cta-box { padding: 30px 22px; }
+      .cta-box .btn { padding-inline: 16px !important; }
+      .footer-inner { padding-bottom: 72px; }
+      #sticky { left: 16px; bottom: 16px; padding: 7px; transform: translateY(80px); }
+      #sticky.show { transform: translateY(0); }
+      .sticky-text { display: none; }
+    }
+    @media(max-width:380px) {
+      .nav-cta .btn { padding-inline: 12px !important; font-size: 12px !important; }
+      .logo { gap: 7px; }
+      .logo-name { font-size: 18px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://tishinatyt.github.io/sunche-new/#business",
+      "name": "SunChe",
+      "url": "https://tishinatyt.github.io/sunche-new/",
+      "description": "SunChe: сонячні електростанції під ключ і резервне живлення у Чернігові та області. Підбір панелей, інверторів і акумуляторів, монтаж та обслуговування.",
+      "image": "https://tishinatyt.github.io/sunche-new/assets/solar-social.jpg",
+      "logo": "https://tishinatyt.github.io/sunche-new/assets/sunche-icon.svg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Чернігів",
+        "addressRegion": "Чернігівська область",
+        "addressCountry": "UA"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Чернігів"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Чернігівська область"
+        },
+        {
+          "@type": "Country",
+          "name": "Україна"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/SunChernigiv",
+        "https://t.me/cryptomaus"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://tishinatyt.github.io/sunche-new/#website",
+      "name": "SunChe",
+      "url": "https://tishinatyt.github.io/sunche-new/",
+      "inLanguage": "uk-UA",
+      "publisher": {
+        "@id": "https://tishinatyt.github.io/sunche-new/#business"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://tishinatyt.github.io/sunche-new/#webpage",
+      "url": "https://tishinatyt.github.io/sunche-new/",
+      "name": "Сонячні станції та резервне живлення у Чернігові | SunChe",
+      "description": "SunChe: сонячні електростанції під ключ і резервне живлення у Чернігові та області. Підбір панелей, інверторів і акумуляторів, монтаж та обслуговування.",
+      "inLanguage": "uk-UA",
+      "isPartOf": {
+        "@id": "https://tishinatyt.github.io/sunche-new/#website"
+      },
+      "about": {
+        "@id": "https://tishinatyt.github.io/sunche-new/#business"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://tishinatyt.github.io/sunche-new/#service-solar",
+      "name": "Монтаж сонячних електростанцій",
+      "description": "Підбір обладнання, проєктування та монтаж СЕС під ключ у Чернігові й області.",
+      "provider": {
+        "@id": "https://tishinatyt.github.io/sunche-new/#business"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Чернігів"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Чернігівська область"
+        }
+      ],
+      "url": "https://tishinatyt.github.io/sunche-new/#services"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://tishinatyt.github.io/sunche-new/#service-backup",
+      "name": "Резервне живлення",
+      "description": "Інвертори та акумулятори для резервного живлення будинків і бізнесу.",
+      "provider": {
+        "@id": "https://tishinatyt.github.io/sunche-new/#business"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Чернігів"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Чернігівська область"
+        }
+      ],
+      "url": "https://tishinatyt.github.io/sunche-new/#services"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://tishinatyt.github.io/sunche-new/#service-maintenance",
+      "name": "Обслуговування сонячних станцій",
+      "description": "Діагностика, технічне обслуговування та моніторинг систем.",
+      "provider": {
+        "@id": "https://tishinatyt.github.io/sunche-new/#business"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Чернігів"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Чернігівська область"
+        }
+      ],
+      "url": "https://tishinatyt.github.io/sunche-new/#services"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tishinatyt.github.io/sunche-new/#faq",
+      "inLanguage": "uk-UA",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чи встановлюєте сонячні станції у Чернігові та області?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Так. SunChe підбирає обладнання, проєктує та монтує сонячні електростанції у Чернігові й Чернігівській області. Виїзд на об’єкт і строки робіт погоджуємо під час консультації."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи працюватимуть сонячні панелі під час відключення світла?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Звичайна мережева станція не забезпечує резервного живлення під час відключення мережі. Для роботи важливих приладів потрібне відповідне гібридне або автономне рішення з акумуляторами та правильною схемою підключення."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Від чого залежить вартість сонячної станції?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Від потужності панелей та інвертора, ємності акумуляторів, стану даху й електромережі та обсягу монтажу. Кошторис готуємо після уточнення споживання й особливостей об’єкта."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Як замовити резервне живлення для будинку чи бізнесу?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Заповніть форму розрахунку або напишіть нам у Telegram. Вкажіть місто, перелік важливих приладів і бажаний час автономної роботи — це допоможе підібрати інвертор та акумулятор."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+<a class="skip-link" href="#main">Перейти до змісту</a>
 
 <!-- NAV -->
-<nav>
+<nav aria-label="Основна навігація">
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="logo">
@@ -555,13 +774,14 @@
         <li><a href="#contacts">Контакти</a></li>
       </ul>
       <div class="nav-cta">
-        <a href="https://t.me/cryptomaus" target="_blank" class="nav-phone">Telegram @cryptomaus</a>
-        <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" class="btn btn-sun" style="font-size:13px;padding:10px 20px;" target="_blank">Розрахувати →</a>
+        <a href="https://t.me/cryptomaus" target="_blank" rel="noopener noreferrer" class="nav-phone">Telegram @cryptomaus</a>
+        <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" class="btn btn-sun" style="font-size:13px;padding:10px 20px;" target="_blank" rel="noopener noreferrer">Розрахувати →</a>
       </div>
     </div>
   </div>
 </nav>
 
+<main id="main">
 <!-- HERO -->
 <section id="hero">
   <!-- sun rays -->
@@ -571,18 +791,18 @@
     <div class="hero-grid">
       <div class="hero-left">
         <div class="hero-eyebrow reveal">
-          <span class="tag">Вся Україна</span>
+          <span class="tag">Чернігів та область</span>
         </div>
         <h1 class="hero-title reveal rd1">
-          Сонячні станції<br/>та резервне живлення<br/><span class="accent">під ключ</span>
+          Сонячні станції<br/>та резервне живлення<br/><span class="accent">у Чернігові</span>
         </h1>
         <p class="hero-sub reveal rd2">
-          Монтаж по всій Україні.<br/>
+          Підбір і монтаж під ключ для дому та бізнесу в Чернігові й області. Виїзди по Україні — за погодженням.<br/>
           <strong>Кредитування на вигідних умовах</strong> — працюємо з будь-яким банком.
         </p>
         <div class="hero-btns reveal rd2">
-          <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun">☀ Розрахувати вартість</a>
-          <a href="https://t.me/cryptomaus" target="_blank" class="btn btn-outline">✈️ Зв'язатись в Telegram</a>
+          <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" rel="noopener noreferrer" class="btn btn-sun">☀ Розрахувати вартість</a>
+          <a href="https://t.me/cryptomaus" target="_blank" rel="noopener noreferrer" class="btn btn-outline">✈️ Зв'язатись в Telegram</a>
         </div>
         <div class="hero-brands reveal rd3">
           <span class="brands-label">Обладнання:</span>
@@ -595,13 +815,18 @@
       </div>
 
       <div class="hero-visual reveal rd2">
-        <img
-          src="hero-solar.png"
-          alt="Будинок з сонячними панелями на даху"
-          style="border-radius:16px;max-width:100%;width:500px;box-shadow:0 8px 32px rgba(0,0,0,0.2);margin-top:24px;display:block;"
-        />
+        <picture>
+          <source media="(max-width: 900px)" srcset="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E" />
+          <img src="assets/hero-solar-640.webp"
+            srcset="assets/hero-solar-640.webp 640w, assets/hero-solar-960.webp 960w"
+            sizes="(max-width: 900px) 1px, 480px"
+            width="1536" height="1024" fetchpriority="high" decoding="async"
+            alt="Сонячні панелі на даху приватного будинку — приклад встановлення сонячної станції"
+            class="hero-photo" />
+        </picture>
         <div class="sun-card">
-          <div class="sun-card-title">// Ваша станція онлайн</div>
+          <div class="sun-card-title">Приклад показників системи</div>
+          <p class="demo-note">Ілюстративні дані. Результат залежить від обладнання, сезону та споживання.</p>
           <div class="sun-stat">
             <span class="sun-stat-label">Потужність системи</span>
             <span class="sun-stat-val">10 кВт</span>
@@ -664,8 +889,8 @@
   <div class="container">
     <div class="sec-header">
       <div class="sec-label reveal"><span class="tag">Послуги</span></div>
-      <h2 class="sec-title reveal rd1">Що ми <span class="accent">робимо</span></h2>
-      <p class="sec-sub reveal rd1">Повний спектр послуг у сфері сонячної енергетики та автономного живлення.</p>
+      <h2 class="sec-title reveal rd1">Енергонезалежність<br/><span class="accent">у Чернігові</span></h2>
+      <p class="sec-sub reveal rd1">Сонячні електростанції, гібридні системи та резервне живлення для приватних будинків і підприємств Чернігівщини.</p>
     </div>
     <div class="services-grid">
       <div class="service-card featured reveal">
@@ -675,7 +900,7 @@
         <ul class="service-list">
           <li>Приватні будинки від 5 кВт</li>
           <li>Комерційні об'єкти від 30 кВт</li>
-          <li>Підключення до мережі ДТЕК</li>
+          <li>Підключення до електромережі</li>
           <li>Оформлення «зеленого» тарифу</li>
         </ul>
       </div>
@@ -687,7 +912,7 @@
           <li>Інвертори Deye, Growatt, Victron</li>
           <li>АКБ LiFePO4 100–600 Аг</li>
           <li>Автоматичне перемикання</li>
-          <li>Робота без мережі 24/7</li>
+          <li>Розрахунок часу автономності</li>
         </ul>
       </div>
       <div class="service-card reveal rd2">
@@ -730,7 +955,7 @@
         <div class="step-num">3</div>
         <div class="step-icon">📐</div>
         <div class="step-title">Проект</div>
-        <div class="step-text">Готуємо технічний проект, узгоджуємо з ДТЕК, підбираємо обладнання.</div>
+        <div class="step-text">Готуємо технічний проєкт, погоджуємо підключення з оператором мережі, підбираємо обладнання.</div>
       </div>
       <div class="step reveal rd3">
         <div class="step-num">4</div>
@@ -754,7 +979,7 @@
     <div class="calc-inner">
       <h2 class="calc-title reveal">Скільки коштує ваша<br/>сонячна станція?</h2>
       <p class="calc-sub reveal rd1">Розрахуйте вартість за 5 хвилин — заповніть бриф онлайн</p>
-      <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-white reveal rd1" style="font-size:17px;padding:18px 44px;">
+      <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" rel="noopener noreferrer" class="btn btn-white reveal rd1" style="font-size:17px;padding:18px 44px;">
         ☀ Розрахувати вартість СЕС
       </a>
       <div class="calc-chips reveal rd2">
@@ -777,7 +1002,7 @@
         <div class="credit-compact-text">Працюємо з будь-якими банками — допоможемо оформити кредит або розстрочку на вигідних умовах. Консультація безкоштовна.</div>
       </div>
       <div class="credit-compact-cta">
-        <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun">Отримати консультацію →</a>
+        <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" rel="noopener noreferrer" class="btn btn-sun">Отримати консультацію →</a>
       </div>
     </div>
   </div>
@@ -799,7 +1024,7 @@
           <li>Офіційне партнерство, без тіні</li>
         </ul>
         <div class="reveal rd2">
-          <a href="https://tishinatyt.github.io/ses-platform/installer-brief.html" target="_blank" class="btn btn-sun">Заповнити анкету →</a>
+          <a href="https://tishinatyt.github.io/ses-platform/installer-brief.html" target="_blank" rel="noopener noreferrer" class="btn btn-sun">Заповнити анкету →</a>
         </div>
       </div>
       <div class="partners-right reveal rd1">
@@ -821,9 +1046,26 @@
           <div class="perk-text">Гідна оплата за кожен завершений об'єкт</div>
         </div>
         <div style="margin-top:24px;">
-          <a href="https://tishinatyt.github.io/ses-platform/installer-brief.html" target="_blank" class="btn btn-sun" style="width:100%;justify-content:center;">Стати партнером →</a>
+          <a href="https://tishinatyt.github.io/ses-platform/installer-brief.html" target="_blank" rel="noopener noreferrer" class="btn btn-sun" style="width:100%;justify-content:center;">Стати партнером →</a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL QUESTIONS -->
+<section id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="sec-header">
+      <span class="tag">Перед замовленням</span>
+      <h2 id="faq-title" class="sec-title">Сонячна енергія у Чернігові:<br/><span class="accent">питання та відповіді</span></h2>
+      <p class="sec-sub">Що варто знати про монтаж СЕС і резервне живлення.</p>
+    </div>
+    <div class="faq-list">
+      <details><summary>Чи встановлюєте сонячні станції у Чернігові та області?</summary><p>Так. SunChe підбирає обладнання, проєктує та монтує сонячні електростанції у Чернігові й Чернігівській області. Виїзд на об’єкт і строки робіт погоджуємо під час консультації.</p></details>
+      <details><summary>Чи працюватимуть сонячні панелі під час відключення світла?</summary><p>Звичайна мережева станція не забезпечує резервного живлення під час відключення мережі. Для роботи важливих приладів потрібне відповідне гібридне або автономне рішення з акумуляторами та правильною схемою підключення.</p></details>
+      <details><summary>Від чого залежить вартість сонячної станції?</summary><p>Від потужності панелей та інвертора, ємності акумуляторів, стану даху й електромережі та обсягу монтажу. Кошторис готуємо після уточнення споживання й особливостей об’єкта.</p></details>
+      <details><summary>Як замовити резервне живлення для будинку чи бізнесу?</summary><p>Заповніть форму розрахунку або напишіть нам у Telegram. Вкажіть місто, перелік важливих приладів і бажаний час автономної роботи — це допоможе підібрати інвертор та акумулятор.</p></details>
     </div>
   </div>
 </section>
@@ -836,7 +1078,7 @@
         <h2 class="contacts-title reveal">Зв'яжіться<br/>з нами</h2>
         <p class="contacts-sub reveal rd1">Безкоштовна консультація та виїзд на об'єкт. Відповідаємо швидко.</p>
         <div class="contact-cards">
-          <a href="https://t.me/cryptomaus" target="_blank" class="contact-card reveal rd1">
+          <a href="https://t.me/cryptomaus" target="_blank" rel="noopener noreferrer" class="contact-card reveal rd1">
             <div class="contact-icon tg">✈️</div>
             <div>
               <div class="contact-label">Telegram</div>
@@ -846,11 +1088,11 @@
           <div class="contact-card reveal rd2" style="cursor:default;">
             <div class="contact-icon addr">📍</div>
             <div>
-              <div class="contact-label">Адреса</div>
-              <div class="contact-val">Вся Україна</div>
+              <div class="contact-label">Працюємо у вашому регіоні</div>
+              <div class="contact-val">Чернігів та Чернігівська область</div>
             </div>
           </div>
-          <a href="https://www.facebook.com/SunChernigiv" target="_blank" class="contact-card reveal rd2">
+          <a href="https://www.facebook.com/SunChernigiv" target="_blank" rel="noopener noreferrer" class="contact-card reveal rd2">
             <div class="contact-icon fb">👍</div>
             <div>
               <div class="contact-label">Facebook</div>
@@ -863,10 +1105,10 @@
         <div class="cta-box">
           <div class="cta-box-title">Безкоштовний виїзд</div>
           <div class="cta-box-sub">Замовте виїзд фахівця — оцінимо ваш дах, порахуємо ефективність та вартість станції безкоштовно.</div>
-          <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-white" style="font-size:16px;padding:16px 36px;width:100%;justify-content:center;margin-bottom:12px;">
+          <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" rel="noopener noreferrer" class="btn btn-white" style="font-size:16px;padding:16px 36px;width:100%;justify-content:center;margin-bottom:12px;">
             ☀ Розрахувати вартість
           </a>
-          <a href="https://t.me/cryptomaus" target="_blank" class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.35);font-size:15px;padding:14px 36px;width:100%;justify-content:center;">
+          <a href="https://t.me/cryptomaus" target="_blank" rel="noopener noreferrer" class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.35);font-size:15px;padding:14px 36px;width:100%;justify-content:center;">
             ✈️ Зв'язатись в Telegram
           </a>
         </div>
@@ -875,6 +1117,7 @@
   </div>
 </section>
 
+</main>
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -883,7 +1126,7 @@
         <div class="footer-sun">☀</div>
         <span class="footer-name">Sun<span>Che</span></span>
       </a>
-      <div class="footer-meta">© 2026 SunChe · Україна · Сонячні станції та резервне живлення</div>
+      <div class="footer-meta">© 2026 SunChe · Чернігів · Сонячні станції та резервне живлення</div>
     </div>
   </div>
 </footer>
@@ -891,69 +1134,30 @@
 <!-- STICKY -->
 <div id="sticky">
   <span class="sticky-text">Розрахунок <strong>безкоштовно</strong></span>
-  <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" class="btn btn-sun" style="font-size:13px;padding:10px 20px;border-radius:100px;">☀ Розрахувати →</a>
+  <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" rel="noopener noreferrer" class="btn btn-sun" style="font-size:13px;padding:10px 20px;border-radius:100px;">☀ Розрахувати →</a>
 </div>
 
-<script>
-  /* CURSOR */
-  const cur = document.getElementById('cursor');
-  const ring = document.getElementById('cursor-ring');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX; my=e.clientY;
-    cur.style.left=mx+'px'; cur.style.top=my+'px';
-  });
-  (function tick(){
-    rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    requestAnimationFrame(tick);
-  })();
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>cur.classList.add('hover'));
-    el.addEventListener('mouseleave',()=>cur.classList.remove('hover'));
-  });
 
-  /* SUN RAYS */
-  const raysEl = document.getElementById('rays');
-  if(raysEl){
-    for(let i=0;i<18;i++){
-      const r=document.createElement('div');
-      r.className='ray';
-      r.style.transform=`rotate(${i*20}deg)`;
-      r.style.opacity=(0.3+Math.random()*0.5).toFixed(2);
-      raysEl.appendChild(r);
-    }
-  }
 
-  /* REVEAL */
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
-  },{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-  /* STICKY */
-  const sticky=document.getElementById('sticky');
-  window.addEventListener('scroll',()=>sticky.classList.toggle('show',scrollY>500),{passive:true});
-</script>
-
-<!-- ===== AI CHAT WIDGET ===== -->
+<!-- ===== HELP WIDGET ===== -->
 <style>
-#sc-widget{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:'Outfit',sans-serif;}
+#sc-widget{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
 
 #sc-btn{
   width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;
-  background:linear-gradient(135deg,#f97316,#fbbf24);
-  box-shadow:0 4px 20px rgba(249,115,22,.45);
+  background:linear-gradient(135deg,#1264a3,#1d74b0);
+  box-shadow:0 4px 20px rgba(18,100,163,.45);
   font-size:26px;line-height:1;
   transition:transform .2s,box-shadow .2s;
   display:flex;align-items:center;justify-content:center;
 }
-#sc-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(249,115,22,.6);}
+#sc-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(18,100,163,.6);}
 #sc-btn.open{transform:scale(0.9);}
 
 #sc-panel{
+  max-width:calc(100vw - 40px);max-height:min(520px, calc(100dvh - 120px));
   position:absolute;bottom:72px;right:0;
-  width:340px;max-height:520px;
+  width:340px;
   background:#fff;border-radius:20px 20px 4px 20px;
   box-shadow:0 8px 40px rgba(0,0,0,.18);
   display:flex;flex-direction:column;
@@ -973,7 +1177,7 @@
 }
 #sc-head-avatar{
   width:38px;height:38px;border-radius:50%;
-  background:linear-gradient(135deg,#f97316,#fbbf24);
+  background:linear-gradient(135deg,#1264a3,#1d74b0);
   display:flex;align-items:center;justify-content:center;
   font-size:20px;flex-shrink:0;
 }
@@ -1001,14 +1205,14 @@
 .sc-msg.user{flex-direction:row-reverse;}
 .sc-msg-avatar{
   width:28px;height:28px;border-radius:50%;flex-shrink:0;
-  background:linear-gradient(135deg,#f97316,#fbbf24);
+  background:linear-gradient(135deg,#1264a3,#1d74b0);
   display:flex;align-items:center;justify-content:center;font-size:14px;
 }
 .sc-bubble{
   max-width:220px;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;
 }
 .sc-msg.bot .sc-bubble{background:#f1f5f9;color:#0f172a;border-bottom-left-radius:4px;}
-.sc-msg.user .sc-bubble{background:linear-gradient(135deg,#f97316,#fbbf24);color:#fff;border-bottom-right-radius:4px;}
+.sc-msg.user .sc-bubble{background:linear-gradient(135deg,#1264a3,#1d74b0);color:#fff;border-bottom-right-radius:4px;}
 
 .sc-typing{display:flex;gap:4px;align-items:center;padding:10px 14px;}
 .sc-dot{
@@ -1021,19 +1225,19 @@
 
 /* Lead form */
 #sc-lead{
-  padding:16px;background:#fffbf3;border-top:1px solid #fde68a;
+  padding:16px;background:#f5faff;border-top:1px solid #d4ebfb;
   display:none;flex-direction:column;gap:10px;flex-shrink:0;
 }
 #sc-lead.show{display:flex;}
-#sc-lead-title{font-size:13px;font-weight:700;color:#92400e;margin-bottom:2px;}
+#sc-lead-title{font-size:13px;font-weight:700;color:#185c91;margin-bottom:2px;}
 #sc-lead input{
   border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;
   font-size:13px;font-family:inherit;outline:none;
   transition:border-color .2s;
 }
-#sc-lead input:focus{border-color:#f97316;}
+#sc-lead input:focus{border-color:#1264a3;}
 #sc-lead-send{
-  background:linear-gradient(135deg,#f97316,#fbbf24);color:#fff;
+  background:linear-gradient(135deg,#1264a3,#1d74b0);color:#fff;
   border:none;border-radius:10px;padding:11px;
   font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;
   transition:opacity .2s;
@@ -1052,9 +1256,9 @@
   padding:10px 12px;font-size:13px;font-family:inherit;outline:none;
   transition:border-color .2s;
 }
-#sc-input:focus{border-color:#f97316;}
+#sc-input:focus{border-color:#1264a3;}
 #sc-send{
-  background:linear-gradient(135deg,#f97316,#fbbf24);color:#fff;
+  background:linear-gradient(135deg,#1264a3,#1d74b0);color:#fff;
   border:none;border-radius:10px;width:38px;height:38px;
   font-size:18px;cursor:pointer;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
@@ -1062,11 +1266,11 @@
 }
 #sc-send:hover{opacity:.9;}
 #sc-req-btn{
-  width:100%;background:none;border:1.5px dashed #fde68a;
-  border-radius:10px;padding:8px;color:#92400e;font-size:12px;font-weight:600;
+  width:100%;background:none;border:1.5px dashed #d4ebfb;
+  border-radius:10px;padding:8px;color:#185c91;font-size:12px;font-weight:600;
   cursor:pointer;font-family:inherit;transition:background .2s,border-color .2s;
 }
-#sc-req-btn:hover{background:#fffbf3;border-color:#f97316;}
+#sc-req-btn:hover{background:#f5faff;border-color:#1264a3;}
 
 @media(max-width:400px){
   #sc-panel{width:calc(100vw - 32px);right:0;}
@@ -1074,200 +1278,38 @@
 </style>
 
 <div id="sc-widget">
-  <button id="sc-btn" title="Задати питання AI">☀️</button>
+  <button id="sc-btn" title="Помічник SunChe" aria-label="Відкрити помічника SunChe" aria-controls="sc-panel" aria-expanded="false">☀️</button>
 
-  <div id="sc-panel">
+  <div id="sc-panel" role="dialog" aria-label="Помічник SunChe" inert>
     <div id="sc-head">
       <div id="sc-head-avatar">☀️</div>
       <div id="sc-head-info">
-        <div id="sc-head-name">SunChe AI</div>
-        <div id="sc-head-status">● Відповідаю зараз</div>
+        <div id="sc-head-name">Помічник SunChe</div>
+        <div id="sc-head-status">Швидкі відповіді та зв’язок</div>
       </div>
-      <button id="sc-head-close">✕</button>
+      <button id="sc-head-close" aria-label="Закрити помічника">✕</button>
     </div>
 
-    <div id="sc-msgs"></div>
+    <div id="sc-msgs" role="log" aria-live="polite"></div>
 
     <div id="sc-lead">
-      <div id="sc-lead-title">📋 Залишити заявку</div>
-      <input type="text" id="sc-lead-name" placeholder="Ваше ім'я" autocomplete="name" />
-      <input type="tel" id="sc-lead-phone" placeholder="+38 (0XX) XXX XX XX" autocomplete="tel" />
-      <button id="sc-lead-send">Відправити заявку →</button>
-      <button id="sc-lead-cancel">Скасувати</button>
+      <div id="sc-lead-title">Заявка на консультацію</div>
+      <p style="font-size:13px;line-height:1.5;color:var(--muted)">Заповніть форму розрахунку або напишіть нам у Telegram.</p>
+      <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" target="_blank" rel="noopener noreferrer" id="sc-lead-send" style="text-align:center;text-decoration:none">Відкрити форму заявки →</a>
+      <a href="https://t.me/cryptomaus" target="_blank" rel="noopener noreferrer" style="color:var(--sun);font-size:13px;text-align:center">Написати в Telegram</a>
+      <button id="sc-lead-cancel">Назад до відповідей</button>
     </div>
 
     <div id="sc-foot">
       <div id="sc-input-row">
-        <input type="text" id="sc-input" placeholder="Запитайте про СЕС..." autocomplete="off" />
-        <button id="sc-send">↑</button>
+        <input type="text" id="sc-input" aria-label="Ваше питання" placeholder="Запитайте про СЕС..." autocomplete="off" />
+        <button id="sc-send" aria-label="Поставити питання">↑</button>
       </div>
       <button id="sc-req-btn">📋 Залишити заявку на виїзд</button>
     </div>
   </div>
 </div>
 
-<script>
-(function(){
-  // ⚠️ Тимчасово для тесту — перенести на бекенд у продакшні
-  const _a = 'sk-ant-api03-4a8DepoyL0y0Oe';
-  const _b = 'K7lCvoIpJLgEQLVkbLqw0DDTsNxMI';
-  const _c = 'C5CvMkkXYbrL2KVF07nz08F47cEijy-laSbDIN-Dtzw-hKsxugAA';
-  const CLAUDE_KEY = _a + _b + _c;
-  const TG_TOKEN   = '8741925031:AAHacGEzHZFa3OHe81g1C07tTEBEr-jVaHk';
-  const TG_CHAT_ID = '503549265';
-
-  const SYSTEM = `Ти — AI-помічник компанії SunChe (вся Україна). Відповідай виключно українською мовою.
-Компанія займається:
-- Монтажем сонячних електростанцій (СЕС) під ключ — гарантія 5 років
-- Резервним живленням: акумулятори, інвертори, ДБЖ
-- Обслуговуванням обладнання
-Кредитування та розстрочка: працюємо з будь-якими банками, консультація безкоштовна.
-Безкоштовний виїзд спеціаліста. Бренди: Jinko, Canadian Solar, LONGi, JA Solar, Trina.
-Працюємо по всій Україні. Telegram: @cryptomaus.
-Відповідай коротко — 2–3 речення. На питання про ціну — скажи що точна вартість після виїзду, запропонуй залишити заявку.`;
-
-  const btn      = document.getElementById('sc-btn');
-  const panel    = document.getElementById('sc-panel');
-  const msgs     = document.getElementById('sc-msgs');
-  const input    = document.getElementById('sc-input');
-  const sendBtn  = document.getElementById('sc-send');
-  const closeBtn = document.getElementById('sc-head-close');
-  const lead     = document.getElementById('sc-lead');
-  const leadName = document.getElementById('sc-lead-name');
-  const leadPhone= document.getElementById('sc-lead-phone');
-  const leadSend = document.getElementById('sc-lead-send');
-  const leadCancel=document.getElementById('sc-lead-cancel');
-  const reqBtn   = document.getElementById('sc-req-btn');
-
-  let history = [];
-  let open = false;
-  let busy = false;
-
-  function togglePanel(){
-    open = !open;
-    panel.classList.toggle('open', open);
-    btn.classList.toggle('open', open);
-    if(open && history.length === 0) greet();
-  }
-  btn.addEventListener('click', togglePanel);
-  closeBtn.addEventListener('click', togglePanel);
-
-  function escHtml(t){
-    return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  function addMsg(role, text){
-    const wrap = document.createElement('div');
-    wrap.className = 'sc-msg ' + role;
-    wrap.innerHTML = role === 'bot'
-      ? `<div class="sc-msg-avatar">☀️</div><div class="sc-bubble">${escHtml(text)}</div>`
-      : `<div class="sc-bubble">${escHtml(text)}</div>`;
-    msgs.appendChild(wrap);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  function addTyping(){
-    const wrap = document.createElement('div');
-    wrap.className = 'sc-msg bot';
-    wrap.id = 'sc-typing';
-    wrap.innerHTML = `<div class="sc-msg-avatar">☀️</div><div class="sc-bubble sc-typing"><div class="sc-dot"></div><div class="sc-dot"></div><div class="sc-dot"></div></div>`;
-    msgs.appendChild(wrap);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-  function removeTyping(){ document.getElementById('sc-typing')?.remove(); }
-
-  function greet(){
-    addMsg('bot', 'Привіт! 👋 Я AI-помічник SunChe. Консультую з питань сонячних станцій та резервного живлення. Чим можу допомогти?');
-  }
-
-  async function sendMessage(){
-    const text = input.value.trim();
-    if(!text || busy) return;
-    busy = true;
-    input.value = '';
-
-    addMsg('user', text);
-    history.push({ role: 'user', content: text });
-    addTyping();
-
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': CLAUDE_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
-        },
-        body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 400,
-          system: SYSTEM,
-          messages: history,
-        }),
-      });
-
-      const data = await res.json();
-      removeTyping();
-
-      if(data.content?.[0]?.text){
-        const reply = data.content[0].text;
-        addMsg('bot', reply);
-        history.push({ role: 'assistant', content: reply });
-        if(history.length > 20) history = history.slice(-20);
-      } else {
-        addMsg('bot', 'Вибачте, сталася помилка. Напишіть нам: @cryptomaus');
-      }
-    } catch(e){
-      removeTyping();
-      addMsg('bot', 'Не вдалося з\'єднатись. Напишіть нам: @cryptomaus');
-    }
-
-    busy = false;
-  }
-
-  sendBtn.addEventListener('click', sendMessage);
-  input.addEventListener('keydown', e => { if(e.key === 'Enter') sendMessage(); });
-
-  // Lead form — напряму в Telegram Bot API (підтримує CORS)
-  function openLead(){ lead.classList.add('show'); reqBtn.style.display='none'; leadName.focus(); }
-  function closeLead(){ lead.classList.remove('show'); reqBtn.style.display=''; leadName.value=''; leadPhone.value=''; }
-
-  reqBtn.addEventListener('click', openLead);
-  leadCancel.addEventListener('click', closeLead);
-
-  leadSend.addEventListener('click', async () => {
-    const name  = leadName.value.trim();
-    const phone = leadPhone.value.trim();
-    if(!name){ leadName.focus(); return; }
-    if(!phone){ leadPhone.focus(); return; }
-
-    leadSend.textContent = 'Відправляємо...';
-    leadSend.disabled = true;
-
-    try {
-      const text = `🌞 <b>Нова заявка з сайту SunChe!</b>\n\n👤 Ім'я: ${name}\n📞 Телефон: ${phone}\n\n💬 Джерело: AI чат-бот`;
-      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'HTML' }),
-      });
-      const data = await res.json();
-      closeLead();
-      if(data.ok){
-        addMsg('bot', `✅ Дякуємо, ${name}! Заявку отримано. Наш спеціаліст зателефонує вам найближчим часом.`);
-      } else {
-        addMsg('bot', 'Не вдалося відправити. Напишіть напряму: @cryptomaus');
-      }
-    } catch(e){
-      closeLead();
-      addMsg('bot', 'Помилка з\'єднання. Напишіть: @cryptomaus');
-    }
-
-    leadSend.textContent = 'Відправити заявку →';
-    leadSend.disabled = false;
-  });
-})();
-</script>
+<script src="app.js" defer></script>
 </body>
 </html>

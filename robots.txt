@@ -1,0 +1,5 @@
+# GitHub Pages project site. Crawlers only apply robots.txt from the hostname root.
+# Submit this project's sitemap in its URL-prefix Search Console property.
+User-agent: *
+Allow: /sunche-new/
+Sitemap: https://tishinatyt.github.io/sunche-new/sitemap.xml
