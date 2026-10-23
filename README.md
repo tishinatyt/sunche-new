@@ -9,6 +9,9 @@ The website needs no frontend build and does not depend on the Express server.
 
 - `index.html`: content, responsive styles, metadata and JSON-LD.
 - `app.js`: optional help widget and sticky action. Core content works without JavaScript.
+- `price.html`, `price.css`, `price.js`: retail catalog with progressively enhanced search, category/availability filters and pagination. All 146 public products are present in the static HTML.
+- `downloads/SunChe_Price_RRP.xlsx`: customer workbook containing RRP only. Never publish wholesale prices or the unfiltered supplier workbook.
+- `assets/catalog/`: lightweight product thumbnails from the supplied price list.
 - `assets/hero-solar-*.webp`: responsive delivery versions of the original photograph.
 - `sitemap.xml`: submit https://tishinatyt.github.io/sunche-new/sitemap.xml in the site's URL-prefix Search Console property.
 
@@ -30,3 +33,7 @@ Before reconnecting the backend, configure new credentials as server environment
 Serve this directory using a static HTTP server and check the desktop and narrow-screen layouts.
 Run `node --check app.js` for syntax verification. When editing FAQ content, update the matching FAQPage data in `index.html`.
 Keep the canonical URL, sitemap and social image URLs aligned with the production location.
+
+## Price updates
+
+Current source: Nota Trade price list dated 19 October 2026. Keep source RRP currencies and availability dates; do not infer current stock from this snapshot. GoodWe has no source RRP and is shown as price on request. Nine panel rows hidden in the supplier workbook are not included in the public catalog. Replace the customer workbook and matching catalog prices together, update the source date, and verify that no wholesale values remain in the public assets. Confirm the sales unit for accessories before quoting.

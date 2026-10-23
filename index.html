@@ -581,7 +581,11 @@
       #sticky.show { transform: translateY(0); }
       .sticky-text { display: none; }
     }
+    .nav-price-mobile { display: none; color: var(--sun); font-weight: 700; font-size: 14px; text-decoration: none; }
+    @media(max-width:768px) { .nav-price-mobile { display: inline-flex; } }
     @media(max-width:380px) {
+      .nav-cta { gap: 8px; }
+      .nav-cta .btn { padding-inline: 9px !important; }
       .nav-cta .btn { padding-inline: 12px !important; font-size: 12px !important; }
       .logo { gap: 7px; }
       .logo-name { font-size: 18px; }
@@ -768,12 +772,14 @@
         <span class="logo-name">Sun<span>Che</span></span>
       </a>
       <ul class="nav-links">
+        <li><a href="price.html">Прайс</a></li>
         <li><a href="#services">Послуги</a></li>
         <li><a href="#how">Як працюємо</a></li>
         <li><a href="#credit">Кредитування</a></li>
         <li><a href="#contacts">Контакти</a></li>
       </ul>
       <div class="nav-cta">
+        <a href="price.html" class="nav-price-mobile">Прайс</a>
         <a href="https://t.me/cryptomaus" target="_blank" rel="noopener noreferrer" class="nav-phone">Telegram @cryptomaus</a>
         <a href="https://tishinatyt.github.io/ses-platform/solar-brief.html" class="btn btn-sun" style="font-size:13px;padding:10px 20px;" target="_blank" rel="noopener noreferrer">Розрахувати →</a>
       </div>
