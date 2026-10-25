@@ -1,4 +1,6 @@
-# SunChe
+# SunChe — solar installations in Chernihiv
+
+[SunChe website](https://tishinatyt.github.io/sunche-new/) · [Equipment price list](https://tishinatyt.github.io/sunche-new/price.html)
 
 Static Ukrainian website for solar installations and backup power in Chernihiv and the Chernihiv region.
 
@@ -37,3 +39,13 @@ Keep the canonical URL, sitemap and social image URLs aligned with the productio
 ## Price updates
 
 Current source: Nota Trade price list dated 19 October 2026. Keep source RRP currencies and availability dates; do not infer current stock from this snapshot. GoodWe has no source RRP and is shown as price on request. Nine panel rows hidden in the supplier workbook are not included in the public catalog. Replace the customer workbook and matching catalog prices together, update the source date, and verify that no wholesale values remain in the public assets. Confirm the sales unit for accessories before quoting.
+
+## Google Search Console
+
+Use the URL-prefix property `https://tishinatyt.github.io/sunche-new/`, including the final slash; the user does not control DNS for `github.io`. The homepage includes the Google verification meta tag previously supplied by the owner. Confirm that Search Console offers the same token for the signed-in account before clicking Verify; the tag alone does not prove that verification has completed.
+
+After verification, submit `https://tishinatyt.github.io/sunche-new/sitemap.xml` in Sitemaps. Inspect the homepage and `price.html`, run the live URL test, then request indexing for each. A valid sitemap and an indexable page do not guarantee inclusion or rank. Do not claim indexing without Search Console evidence.
+
+The root `https://tishinatyt.github.io/robots.txt` returned 404 on 2026-10-25; this is not a crawl prohibition. The project-level robots.txt cannot replace it. Google does not support a separate site-name result for a subdirectory; changing the site URL or moving domains is not necessary to allow these pages to be indexed.
+
+Audit on 2026-10-25: homepage, catalog and sitemap returned HTTP 200; no noindex meta or X-Robots-Tag was found on the pages. Existing canonicals match the sitemap and catalog content is available without JavaScript. Actual Google indexing status and sitemap submission remain unverified because the GSC Wizard connection requires a subscription.
