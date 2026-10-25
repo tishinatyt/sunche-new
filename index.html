@@ -761,9 +761,23 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="energy-theme.css?v=20261025">
+<link rel="stylesheet" href="energy-theme.css?v=20261025-charge">
+<script src="energy-motion.js?v=20261025" defer></script>
 </head>
 <body>
+<div class="charge-layer" aria-hidden="true">
+  <svg viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice" focusable="false">
+    <defs><linearGradient id="charge-light" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#258dc2"/><stop offset=".6" stop-color="#35c8ed"/><stop offset="1" stop-color="#fff5c2"/></linearGradient></defs>
+    <g fill="none" stroke-linecap="round">
+      <path class="charge-pulse charge-one" pathLength="1000" d="M-80 538 L144 421 Q180 402 206 356 L269 254 Q294 213 352 197 L452 169 Q497 156 528 89 L590 -55"/>
+      <path class="charge-pulse charge-two" pathLength="1000" d="M575 1095 L764 963 Q827 918 891 907 L1058 876 Q1094 869 1131 812 L1215 681 Q1255 621 1339 603 L1610 538"/>
+      <path class="charge-pulse charge-three" pathLength="1000" d="M1580 93 L1443 222 Q1406 257 1391 319 L1368 416 Q1351 477 1282 515 L1130 602"/>
+      <path class="charge-pulse charge-four" pathLength="1000" d="M-40 746 H137 Q150 746 150 760 V938 Q150 951 165 951 H443"/>
+    </g>
+  </svg>
+</div>
+<button class="charge-toggle" type="button" aria-pressed="true" aria-label="Зупинити рух заряду на фоні" hidden><span aria-hidden="true">ϟ</span> <span class="charge-toggle-label">Рух фону</span></button>
+
 
 <a class="skip-link" href="#main">Перейти до змісту</a>
 

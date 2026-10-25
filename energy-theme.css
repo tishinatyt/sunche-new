@@ -50,7 +50,7 @@ footer { background: rgba(229, 242, 251, .86); }
 .table-wrap { background: #fff; }
 
 @media (max-width: 640px) {
-  body::before { background-position: center, 64% center; }
+  body::before { background-position: center; }
   #hero { background: rgba(246, 251, 255, .38); }
 }
 
@@ -59,3 +59,58 @@ footer { background: rgba(229, 242, 251, .86); }
   body, #hero, #benefits, #services, #how, #credit,
   #partners, #faq, #contacts, footer { background: #fff; }
 }
+
+/* Small charge packets travel across the stationary texture. */
+.charge-layer {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  height: 100lvh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.charge-layer svg { display: block; width: 100%; height: 100%; }
+.charge-pulse {
+  stroke: url(#charge-light);
+  stroke-width: 3;
+  stroke-dasharray: 34 966;
+  opacity: .86;
+  filter: drop-shadow(0 0 3px rgba(30, 161, 218, .5));
+  animation: charge-travel 15s linear infinite;
+}
+.charge-two { animation-duration: 18s; animation-delay: -8s; }
+.charge-three { animation-duration: 13s; animation-delay: -4s; }
+.charge-four { animation-duration: 17s; animation-delay: -11s; stroke-width: 2; opacity: .6; }
+@keyframes charge-travel { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+.charge-paused .charge-pulse, .charge-tab-hidden .charge-pulse { animation-play-state: paused; }
+.charge-toggle {
+  position: fixed;
+  left: 16px;
+  bottom: 18px;
+  z-index: 190;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 7px 12px;
+  border: 1px solid #bad9ef;
+  border-radius: 99px;
+  background: rgba(247, 251, 255, .95);
+  color: #245573;
+  font: 500 11px/1.4 system-ui, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(18, 54, 78, .06);
+}
+.charge-toggle[hidden] { display: none; }
+.charge-toggle > span:first-child { font-size: 17px; color: #1264a3; }
+.charge-toggle:hover { background: #fff; border-color: #1264a3; }
+.charge-toggle:focus-visible { outline: 3px solid #1264a3; outline-offset: 3px; }
+@media (max-width: 640px) {
+  .charge-toggle { left: 10px; bottom: 82px; padding: 6px 10px; }
+  .charge-four { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .charge-layer, .charge-toggle { display: none; }
+  .charge-pulse { animation: none; }
+}
+@media print { .charge-layer, .charge-toggle { display: none; } }
