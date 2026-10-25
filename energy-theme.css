@@ -1,0 +1,61 @@
+/* One stationary surface shared by the homepage and equipment catalog.
+   A fixed layer also works on mobile, without background-attachment: fixed. */
+body {
+  isolation: isolate;
+  min-height: 100vh;
+  background-color: #edf5fb;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  height: 100lvh;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(246, 250, 254, .16), rgba(238, 247, 253, .16)),
+    url("assets/energy-texture.webp") center / cover no-repeat;
+}
+
+#hero {
+  background: linear-gradient(110deg, rgba(247, 251, 255, .54), rgba(235, 246, 254, .12));
+}
+.hero-rays { display: none; }
+
+#benefits, #how, #faq {
+  background: rgba(255, 255, 255, .30);
+}
+#services, #credit {
+  background: rgba(234, 245, 253, .18);
+}
+#partners, #contacts {
+  background: linear-gradient(120deg, rgba(222, 239, 251, .48), rgba(239, 248, 254, .18));
+}
+#calc {
+  background: linear-gradient(125deg, rgba(15, 78, 126, .94), rgba(22, 102, 156, .86));
+}
+
+.benefit-card, .service-card, .credit-compact,
+.contact-card, .faq-list details, .partners-right {
+  background-color: rgba(255, 255, 255, .94);
+}
+
+footer { background: rgba(229, 242, 251, .86); }
+.footer-meta a { color: inherit; text-underline-offset: 3px; }
+
+/* Catalog controls and product rows retain their solid reading surfaces. */
+.download-panel { background: rgba(224, 240, 252, .94); }
+.table-wrap { background: #fff; }
+
+@media (max-width: 640px) {
+  body::before { background-position: center, 64% center; }
+  #hero { background: rgba(246, 251, 255, .38); }
+}
+
+@media print {
+  body::before { display: none; }
+  body, #hero, #benefits, #services, #how, #credit,
+  #partners, #faq, #contacts, footer { background: #fff; }
+}

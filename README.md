@@ -49,3 +49,7 @@ After verification, submit `https://tishinatyt.github.io/sunche-new/sitemap.xml`
 The root `https://tishinatyt.github.io/robots.txt` returned 404 on 2026-10-25; this is not a crawl prohibition. The project-level robots.txt cannot replace it. Google does not support a separate site-name result for a subdirectory; changing the site URL or moving domains is not necessary to allow these pages to be indexed.
 
 Audit on 2026-10-25: homepage, catalog and sitemap returned HTTP 200; no noindex meta or X-Robots-Tag was found on the pages. Existing canonicals match the sitemap and catalog content is available without JavaScript. Actual Google indexing status and sitemap submission remain unverified because the GSC Wizard connection requires a subscription.
+
+## Energy background
+
+`energy-theme.css` is shared by both public pages. It draws the generated, optimized `assets/energy-texture.webp` on a single fixed, non-interactive layer behind the content. Sections use translucent tints; cards and catalog rows retain readable surfaces. There is no scroll listener, background animation or extra JavaScript. The layer is omitted when printing. Original art: pale photovoltaic crystalline texture with circuit contours, generated from the owner-selected solar workspace image as an abstract transformation; no portrait or personal photo is published.
