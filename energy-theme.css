@@ -60,7 +60,7 @@ footer { background: rgba(229, 242, 251, .86); }
   #partners, #faq, #contacts, footer { background: #fff; }
 }
 
-/* Small charge packets travel across the stationary texture. */
+/* Branching electrical arcs strike briefly, then fade; no travelling dashes. */
 .charge-layer {
   position: fixed;
   inset: 0;
@@ -71,19 +71,31 @@ footer { background: rgba(229, 242, 251, .86); }
   overflow: hidden;
 }
 .charge-layer svg { display: block; width: 100%; height: 100%; }
-.charge-pulse {
-  stroke: url(#charge-light);
-  stroke-width: 3;
-  stroke-dasharray: 34 966;
-  opacity: .86;
-  filter: drop-shadow(0 0 3px rgba(30, 161, 218, .5));
-  animation: charge-travel 15s linear infinite;
+/* Each arc lights up once per 12 seconds, staggered 3 seconds apart. */
+.charge-bolt {
+  fill: none;
+  stroke-linejoin: miter;
+  stroke-linecap: butt;
+  opacity: 0;
+  animation: charge-strike 12s linear infinite;
 }
-.charge-two { animation-duration: 18s; animation-delay: -8s; }
-.charge-three { animation-duration: 13s; animation-delay: -4s; }
-.charge-four { animation-duration: 17s; animation-delay: -11s; stroke-width: 2; opacity: .6; }
-@keyframes charge-travel { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
-.charge-paused .charge-pulse, .charge-tab-hidden .charge-pulse { animation-play-state: paused; }
+.charge-halo {
+  stroke: #249ddb;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 4px rgba(12, 143, 225, .75));
+}
+.charge-core { stroke: #f0fdff; stroke-width: 1.25; }
+.charge-two { animation-delay: 3s; }
+.charge-three { animation-delay: 6s; }
+.charge-four { animation-delay: 9s; }
+@keyframes charge-strike {
+  0%, 10%, 100% { opacity: 0; }
+  .6%, 2% { opacity: 1; }
+  4% { opacity: .65; }
+}
+.charge-paused .charge-bolt, .charge-tab-hidden .charge-bolt { animation-play-state: paused; }
+/* Pausing hides a frozen strike instead of leaving a bright bolt over the page. */
+.charge-paused .charge-layer { visibility: hidden; }
 .charge-toggle {
   position: fixed;
   left: 16px;
@@ -111,6 +123,6 @@ footer { background: rgba(229, 242, 251, .86); }
 }
 @media (prefers-reduced-motion: reduce) {
   .charge-layer, .charge-toggle { display: none; }
-  .charge-pulse { animation: none; }
+  .charge-bolt { animation: none; }
 }
 @media print { .charge-layer, .charge-toggle { display: none; } }
